@@ -1,3 +1,4 @@
+"SOSY HUI, CHORT"
 """
 Django settings for AnimeOngoing project.
 
