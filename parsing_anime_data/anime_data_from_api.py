@@ -26,5 +26,5 @@ print("getting tv")
 anime_data.append({"mediatypes_tv": get_anime_data(url=tv_url)})
 
 # Сохранить данные об аниме в файл
-with open("test_anime_data.json", "w") as f:
+with open("data_from_api.json", "w") as f:
     json.dump(anime_data, f, indent=4)
