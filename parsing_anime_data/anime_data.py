@@ -67,6 +67,9 @@ class WebsiteParser:
             total_episodes = self.check(
                 total_episodes, "Episodes", xpath="../div/text()"
             )
+            # делаю числом если не None
+            if total_episodes:
+                total_episodes = int(total_episodes)
 
             season = data_block_data.xpath('.//div/h3[text()="Season"]')
             season = self.check(season, "Season", xpath="../a/text()")
@@ -88,15 +91,19 @@ class WebsiteParser:
 
             score = data_block_data.xpath('.//div/h3[text()="Score"]')
             score = self.check(score, "Score", xpath="../strong/text()")
+            if score:
+                score = float(score)
 
             # собираю данные из блока с данными о выходе новой серии
             release_time_block = anime_page.xpath('//*[@id="release-times-section"]')
             if len(release_time_block) > 0:
                 release_time_block = release_time_block[0]
 
-                next_episode_count = release_time_block.xpath(
-                    '//span[@class="release-time-episode-number"]/text()'
-                )[0].split(" ")[1]
+                next_episode_count = int(
+                    release_time_block.xpath(
+                        '//span[@class="release-time-episode-number"]/text()'
+                    )[0].split(" ")[1]
+                )
 
                 release_date_next_ep = release_time_block.xpath(
                     './/*[@id="release-time-raw"]'
@@ -111,6 +118,7 @@ class WebsiteParser:
             anime_data = {
                 "title": title.strip(),
                 "next_episode_count": next_episode_count,
+                "total_episodes": total_episodes,
                 "release_date_next_ep": release_date_next_ep,
                 "mediatype": mediatype,
                 "season": season,
@@ -145,7 +153,7 @@ class WebsiteParser:
 animeschedule = WebsiteParser(
     "https://animeschedule.net/shows?mt=all&airing-statuses-exclude=Finished"
 )
-animeschedule.run()
+# animeschedule.run()
 
-# speed = timeit.timeit(stmt="animeschedule.run()", globals=globals(), number=1)
-# print(speed)
+speed = timeit.timeit(stmt="animeschedule.run()", globals=globals(), number=1)
+print(speed)
