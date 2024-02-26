@@ -1,8 +1,9 @@
-from lxml import etree
+import json
+import timeit
+
 import requests
 from date_formatting import date_form
-import timeit
-import json
+from lxml import etree
 
 
 # https://animeschedule.net/shows?mt=all&airing-statuses=Ongoing
@@ -94,6 +95,12 @@ class WebsiteParser:
             if score:
                 score = float(score)
 
+            description = data_block_data.xpath('//*[@id="description"]/p/text()')
+            if description:
+                description = description[0].strip()
+            else:
+                description = None
+
             # собираю данные из блока с данными о выходе новой серии
             release_time_block = anime_page.xpath('//*[@id="release-times-section"]')
             if len(release_time_block) > 0:
@@ -126,6 +133,7 @@ class WebsiteParser:
                 "status": status,
                 "episode_duration": episode_duration,
                 "score": score,
+                'description': description,
             }
             anime_data_list.append(anime_data)
         return anime_data_list
