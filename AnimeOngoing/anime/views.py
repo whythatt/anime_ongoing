@@ -17,8 +17,9 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 class FavoriteAnimeViewSet(viewsets.ModelViewSet):
+    queryset = FavoriteAnime.objects.all()
     serializer_class = FavoriteAnimeSerializer
    
-    def get_queryset(self):
-        user = self.request.user
-        return FavoriteAnime.objects.filter(user=user)
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     return FavoriteAnime.objects.filter(user=user)
