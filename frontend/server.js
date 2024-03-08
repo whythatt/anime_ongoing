@@ -3,8 +3,16 @@ const fetch = require('node-fetch');
 const app = express();
 const port = 3000;
 
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+// });
+
+
 // Маршрут для получения данных с API аниме
-app.get('/api/animes/', async (req, res) => {
+app.get('http://127.0.0.1:8000/api/animes/', async (req, res) => {
     try {
         const response = await fetch('http://127.0.0.1:8000/api/animes/');
         const data = await response.json();
@@ -15,7 +23,7 @@ app.get('/api/animes/', async (req, res) => {
 });
 
 // Маршрут для получения данных с API избранных аниме
-app.get('/api/favorite/', async (req, res) => {
+app.get('http://127.0.0.1:8000//api/favorite/', async (req, res) => {
     try {
         const response = await fetch('http://127.0.0.1:8000/api/favorite/');
         const data = await response.json();
