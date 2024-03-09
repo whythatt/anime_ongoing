@@ -10,7 +10,7 @@
 //     })
 //     .catch(error => console.error('Ошибка при получении данных с API аниме:', error));
 
-fetch('http://127.0.0.1:8000//api/favorite/')
+fetch('http://127.0.0.1:8000/api/favorite_anime/')
     .then(response => response.json())
     .then(favoriteData => {
         const favoriteAnimeList = document.getElementById('main');

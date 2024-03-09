@@ -9,7 +9,6 @@ class AnimeSerializer(serializers.ModelSerializer):
         model = Anime
         fields = '__all__'
 
-
 class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(allow_blank=False, required=True)
     username = serializers.CharField(max_length=100)
@@ -17,26 +16,36 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email', 'password')
 
-class FavoriteAnimeListSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+class FavoriteAnimeSerializer(serializers.ModelSerializer):
     anime = AnimeSerializer()
     class Meta:
         model = FavoriteAnime
-        fields = '__all__'
+        fields = ('id', 'user', 'anime')
 
-    def get_user(self, obj):
-        return obj.user
-    
-    def get_anime(self, obj):
-        return obj.anime
+        def get_anime(self, obj):
+            return obj.anime
 
-class FavoriteAnimeCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FavoriteAnime
-        fields = '__all__'
 
-    def create(self, validated_data):
-        user = self.context['request'].user
-        anime = validated_data['anime']
-        favorite_anime = FavoriteAnime.objects.create(user=user, anime=anime)
-        return favorite_anime
+# class FavoriteAnime(serializers.ModelSerializer):
+#     user = UserSerializer()
+#     anime = AnimeSerializer()
+#     class Meta:
+#         model = FavoriteAnime
+#         fields = '__all__'
+#
+#     def get_user(self, obj):
+#         return obj.user
+#    
+#     def get_anime(self, obj):
+#         return obj.anime
+
+# class FavoriteAnimeCreateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = FavoriteAnime
+#         fields = '__all__'
+#
+#     def create(self, validated_data):
+#         user = self.context['request'].user
+#         anime = validated_data['anime']
+#         favorite_anime = FavoriteAnime.objects.create(user=user, anime=anime)
+#         return favorite_anime
