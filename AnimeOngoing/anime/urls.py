@@ -1,10 +1,18 @@
+from django.urls import path
 from rest_framework import routers
 
-from .views import AnimeListView, FavoriteAnimeViewSet, UserViewSet
+from .views import (AnimeListView, FavoriteAnimeCreateView,
+                    FavoriteAnimeListViewSet, UserViewSet)
 
 router = routers.SimpleRouter()
 router.register(r'animes', AnimeListView)
 router.register(r'users', UserViewSet)
-router.register(r'favorite', FavoriteAnimeViewSet, basename='favorite')
+router.register(r'favorite_list', FavoriteAnimeListViewSet, basename='favorite_list')
+# router.register(r'favorite_create', FavoriteAnimeCreateView.as_view(), basename='favorite_create')
 
-urlpatterns = router.urls
+
+urlpatterns = [
+    path('favorite_create/', FavoriteAnimeCreateView.as_view())
+]
+
+urlpatterns += router.urls
