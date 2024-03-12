@@ -2,8 +2,9 @@ import json
 import timeit
 
 import requests
-from date_formatting import date_form
 from lxml import etree
+
+from date_formatting import date_form
 
 
 # https://animeschedule.net/shows?mt=all&airing-statuses=Ongoing
@@ -106,11 +107,7 @@ class WebsiteParser:
             if len(release_time_block) > 0:
                 release_time_block = release_time_block[0]
 
-                next_episode_count = int(
-                    release_time_block.xpath(
-                        '//span[@class="release-time-episode-number"]/text()'
-                    )[0].split(" ")[1]
-                )
+                next_episode_count = release_time_block.xpath('//span[@class="release-time-episode-number"]/text()')[0].split(" ")[1]
 
                 release_date_next_ep = release_time_block.xpath(
                     './/*[@id="release-time-raw"]'

@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 class Anime(models.Model):
     title = models.CharField(max_length=500)
-    next_episode_count = models.IntegerField(blank=True, null=True)
+    next_episode_count = models.CharField(max_length=10, blank=True, null=True)
     total_episodes = models.IntegerField(blank=True, null=True)
     release_date_next_ep = models.CharField(max_length=100, blank=True, null=True)
     mediatype = models.CharField(max_length=10, blank=True, null=True)

@@ -138,3 +138,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+
+DJOSER = {
+    'LOGIN_FIELD': 'email'
+}
