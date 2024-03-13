@@ -12,7 +12,7 @@ app.get('/favoriteAnime', async (req, res) => {
         const config = {
             headers: {
                 // 'Authorization': `Token ${token}`
-                'Authorization': 'Token b2d6af37deeb5c2dc892a5c85f1775f2e5311e3f'
+                'Authorization': 'Token 13e6a8a2da98982f7f10e93ab32005137e815d92'
             }
         };
         const response = await axios.get(apiUrl, config);
