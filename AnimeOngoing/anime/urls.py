@@ -7,8 +7,6 @@ from .views import (AddFavoriteAnime, AnimeListView, FavoriteAnimeList,
 router = routers.SimpleRouter()
 router.register(r'animes', AnimeListView)
 router.register(r'users', UserViewSet)
-# router.register(r'favorite_list', FavoriteAnimeListViewSet, basename='favorite_list')
-# router.register(r'favorite_create', FavoriteAnimeCreateView.as_view(), basename='favorite_create')
 
 
 urlpatterns = [

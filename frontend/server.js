@@ -7,15 +7,8 @@ const port = 3000;
 
 app.get('/favoriteAnime', async (req, res) => {
     try {
-        // const token = req.cookie.token;
         const apiUrl = 'http://127.0.0.1:8000/api/favorite_anime/';
-        const config = {
-            headers: {
-                // 'Authorization': `Token ${token}`
-                'Authorization': 'Token 13e6a8a2da98982f7f10e93ab32005137e815d92'
-            }
-        };
-        const response = await axios.get(apiUrl, config);
+        const response = await axios.get(apiUrl);
         const data = response.data;
         res.json(data);
     } catch (error) {

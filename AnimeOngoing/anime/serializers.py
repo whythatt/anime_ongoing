@@ -24,28 +24,3 @@ class FavoriteAnimeSerializer(serializers.ModelSerializer):
 
         def get_anime(self, obj):
             return obj.anime
-
-
-# class FavoriteAnime(serializers.ModelSerializer):
-#     user = UserSerializer()
-#     anime = AnimeSerializer()
-#     class Meta:
-#         model = FavoriteAnime
-#         fields = '__all__'
-#
-#     def get_user(self, obj):
-#         return obj.user
-#    
-#     def get_anime(self, obj):
-#         return obj.anime
-
-# class FavoriteAnimeCreateSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = FavoriteAnime
-#         fields = '__all__'
-#
-#     def create(self, validated_data):
-#         user = self.context['request'].user
-#         anime = validated_data['anime']
-#         favorite_anime = FavoriteAnime.objects.create(user=user, anime=anime)
-#         return favorite_anime
