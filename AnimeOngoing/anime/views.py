@@ -28,6 +28,8 @@ class FavoriteAnimeList(generics.ListAPIView):
         return FavoriteAnime.objects.filter(user=user)
 
 class AddFavoriteAnime(generics.CreateAPIView):
+    serializer_class = AnimeSerializer
+
     def perform_create(self, serializer):
         user = self.request.user
         anime = self.request.data.get('anime')
