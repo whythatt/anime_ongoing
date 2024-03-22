@@ -18,8 +18,3 @@ class Anime(models.Model):
 
     def __str__(self):
         return f"{self.title} | {self.status} | {self.mediatype}"
-
-
-class FavoriteAnime(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    anime = models.ForeignKey(Anime, on_delete=models.CASCADE)

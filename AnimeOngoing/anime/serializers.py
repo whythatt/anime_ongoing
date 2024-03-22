@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import Anime, FavoriteAnime
+from .models import Anime
 
 
 class AnimeSerializer(serializers.ModelSerializer):
@@ -15,12 +15,3 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password')
-
-class FavoriteAnimeSerializer(serializers.ModelSerializer):
-    anime = AnimeSerializer()
-    class Meta:
-        model = FavoriteAnime
-        fields = ('id', 'user', 'anime')
-
-        def get_anime(self, obj):
-            return obj.anime
