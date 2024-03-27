@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from authorization.models import MyUser
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -14,5 +14,5 @@ class AnimeViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = MyUser.objects.all()
     serializer_class = UserSerializer

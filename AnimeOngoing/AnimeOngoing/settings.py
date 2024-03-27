@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "anime",
+    "authorization",
     'rest_framework',
+    # 'rest_framework_simplejwt',
     'corsheaders',
     'djoser',
 ]
@@ -143,7 +145,7 @@ SIMPLE_JWT = {
 }
 
 DJOSER = {
-    'LOGIN_FIELD': 'username',
+    'LOGIN_FIELD': 'email',
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
@@ -151,3 +153,5 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {},
 }
+
+AUTH_USER_MODEL = 'authorization.MyUser'
