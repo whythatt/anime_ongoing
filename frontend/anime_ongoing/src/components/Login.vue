@@ -22,9 +22,16 @@ export default {
                 email: this.email,
                 password: this.password
             })
+            // save token
             .then(response => {
-                
+                const token = response.data.access;
+                localStorage.setItem('token', token);
+                console.log(token);
+                console.log('successful auth');
             })
+            .catch(error => {
+                console.error('login error', error);
+            });
         }
     }
 }

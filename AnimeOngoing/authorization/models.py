@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
+from anime.models import Anime
+
 
 # Create your models here.
 class MyUserManager(BaseUserManager):
@@ -26,6 +28,7 @@ class MyUserManager(BaseUserManager):
 class MyUser(AbstractBaseUser):
     username = models.CharField(verbose_name="username", max_length=100)
     email = models.EmailField(verbose_name="email address", max_length=255, unique=True)
+    favorite_anime = models.ManyToManyField(Anime)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
