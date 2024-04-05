@@ -1,4 +1,5 @@
 <template>
+    <h1>Ya sosu bibu</h1>
     <div>
         <h2>{{ user.id }}</h2>
         <div v-for="anime in animes" :key="anime.id">
