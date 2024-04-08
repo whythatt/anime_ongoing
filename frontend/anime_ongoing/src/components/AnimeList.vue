@@ -50,20 +50,6 @@ export default {
                 console.log('add to favorite');
             })
         },
-        deleteFavorites(animeId, userId) {
-            const token = localStorage.getItem('token');
-
-            axios.delete('http://127.0.0.1:8000/api/add_favorite_anime/', 
-                { anime_id: animeId, user_id: userId }, {
-                headers: {
-                    'Authorization': `JWT ${token}`
-                },
-
-            })
-            .then(response => {
-                console.log('delete from favorite');
-            })
-        },
         fetchUserData() {
             const token = localStorage.getItem('token');
 

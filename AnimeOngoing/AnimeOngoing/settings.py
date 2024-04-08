@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "anime",
     "authorization",
     'rest_framework',
-    # 'rest_framework_simplejwt',
+    'rest_framework_simplejwt',
     'corsheaders',
     'djoser',
 ]
