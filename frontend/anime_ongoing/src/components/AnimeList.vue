@@ -6,6 +6,7 @@
                 <p>{{ anime.id }}</p>
                 <p>{{ anime.title }}</p>
                 <button @click="addToFavorites(anime.id, user.id)">Add to favorite</button>
+                <button @click="deleteFavorites(anime.id, user.id)">Delete from favorite</button>
                 <br><br>
             </div>
         </div>
@@ -47,6 +48,20 @@ export default {
             })
             .then(response => {
                 console.log('add to favorite');
+            })
+        },
+        deleteFavorites(animeId, userId) {
+            const token = localStorage.getItem('token');
+
+            axios.delete('http://127.0.0.1:8000/api/add_favorite_anime/', 
+                { anime_id: animeId, user_id: userId }, {
+                headers: {
+                    'Authorization': `JWT ${token}`
+                },
+
+            })
+            .then(response => {
+                console.log('delete from favorite');
             })
         },
         fetchUserData() {

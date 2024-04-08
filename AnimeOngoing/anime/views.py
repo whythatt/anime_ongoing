@@ -29,4 +29,14 @@ class FavoriteAnimeViewSet(viewsets.ViewSet):
             return Response(serializer.errors, status=400)
     
     def delete(self, request):
-        pass
+        serializer = FavoriteAnimeSerializer(data=request.data)
+        if serializer.is_valid():
+            user_id = serializer.validated_data.get('user_id')
+            anime_id = serializer.validated_data.get('anime_id')
+
+            user = MyUser.objects.get(id=user_id)
+            user.favorite_anime.delete(anime_id)
+            user.save()
+            return Response({'message': 'Аниме удалено из избранного'}, status=201)
+        else:
+            return Response(serializer.errors, status=400)
