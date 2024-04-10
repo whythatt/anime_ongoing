@@ -20,7 +20,12 @@ export default {
     data() {
         return {
             animes: [],
-            user: {}
+        }
+    },
+
+    computed: {
+        user() {
+            return this.$store.state.user;
         }
     },
 
@@ -32,7 +37,7 @@ export default {
                 console.log(response.data);
             })
             .catch(error => {
-                    console.error(error.response.data);
+                console.log(error.message);
             });
         },
         addToFavorites(animeId, userId) {
@@ -49,30 +54,9 @@ export default {
                 console.log('add to favorite');
             })
         },
-        fetchUserData() {
-            const token = localStorage.getItem('token');
-
-            if (token) {
-                axios.get('http://127.0.0.1:8000/auth/users/me/', {
-                    headers: {
-                        'Authorization': `JWT ${token}`
-                    }
-                })
-                .then(response => {
-                    this.user = response.data;
-                    console.log(response.data);
-                })
-                .catch(error => {
-                    console.error(error.response.data);
-                });
-            } else {
-                console.error('Токен не найден в localStorage');
-            }
-        }
     },
     mounted() {
         this.fetchAnimeData();
-        this.fetchUserData();
     }
 }
 </script>

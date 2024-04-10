@@ -13,7 +13,7 @@ export default {
     data() {
         return {
             user: {}
-        };
+        }
     },
 
     methods: {
@@ -28,10 +28,12 @@ export default {
                 })
                 .then(response => {
                     this.user = response.data;
+                    // load data in storage
+                    this.$store.setUser(user);
                     console.log(response.data);
                 })
                 .catch(error => {
-                    console.error(error.response.data);
+                    console.log(error.message);
                 });
             } else {
                 console.error('Токен не найден в localStorage');

@@ -1,10 +1,10 @@
 <template>
     <div>
-        <h1 style="margin-left: auto; margin-right: auto;">FavoritesList</h1>
+        <h1 style="margin: 0 auto 0 auto;">FavoritesList</h1>
+        <div>{{ user }}</div>
         <div v-for="favorite in favorites_list" :key="favorite.id">
             <div class="favorite">
-                <p>{{ favorite.user }}</p>
-                <p>{{ favorite.anime }}</p>
+                <p>User: {{ favorite.user }} | Anime {{  favorite.anime }}</p>
             </div>
         </div>
     </div>
@@ -12,11 +12,18 @@
 
 <script>
 import axios from 'axios';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
     data() {
         return {
-            favorites_list: []
+            favorites_list: [],
+        }
+    },
+
+    computed: {
+        user() {
+            return this.$store.getUser();
         }
     },
 
@@ -26,7 +33,7 @@ export default {
 
             axios.get('http://127.0.0.1:8000/api/favorites_list/', {
                 headers: {
-                    'Authorization': `JWT {token}`
+                    'Authorization': `JWT ${token}`
                 },
             })
             .then(response => {
@@ -34,9 +41,12 @@ export default {
                 console.log(response.data);
             })
             .catch(error => {
-                console.error(error.response.data);
+                console.log(error.message);
             })
-        }
+        },
     },
-}
+    mounted() {
+        this.fetchFavoritesList();
+    }
+});
 </script>
