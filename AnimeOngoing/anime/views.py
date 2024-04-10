@@ -11,7 +11,6 @@ class AnimeViewSet(viewsets.ViewSet):
     def list(self, request):
         queryset = Anime.objects.all().order_by('id')
         serializer = AnimeSerializer(queryset, many=True)
-
         return Response(serializer.data)
 
 class FavoriteAnimeViewSet(viewsets.ViewSet):

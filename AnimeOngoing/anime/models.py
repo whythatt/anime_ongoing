@@ -25,4 +25,4 @@ class FavoriteAnime(models.Model):
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.id}. {self.anime.title}'
+        return f'{self.id}. {self.anime.title}. {self.user.username}'

@@ -35,7 +35,6 @@ export default {
                     console.error(error.response.data);
             });
         },
-
         addToFavorites(animeId, userId) {
             const token = localStorage.getItem('token');
 
