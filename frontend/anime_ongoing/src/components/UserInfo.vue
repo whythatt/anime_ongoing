@@ -15,7 +15,6 @@ export default {
             user: {}
         }
     },
-
     methods: {
         fetchUserData() {
             const token = localStorage.getItem('token');
@@ -28,8 +27,6 @@ export default {
                 })
                 .then(response => {
                     this.user = response.data;
-                    // load data in storage
-                    this.$store.setUser(user);
                     console.log(response.data);
                 })
                 .catch(error => {

@@ -1,12 +1,10 @@
 <template>
     <div>
-        <h2>{{ user.id }}</h2>
         <div v-for="anime in animes" :key="anime.id">
             <div class="anime">
                 <p>{{ anime.id }}</p>
                 <p>{{ anime.title }}</p>
-                <button @click="addToFavorites(anime.id, user.id)">Add to favorite</button>
-                <button @click="deleteFavorites(anime.id, user.id)">Delete from favorite</button>
+                <button @click="addToFavorites(anime.id)">Add to favorite</button>
                 <br><br>
             </div>
         </div>
@@ -22,13 +20,6 @@ export default {
             animes: [],
         }
     },
-
-    computed: {
-        user() {
-            return this.$store.state.user;
-        }
-    },
-
     methods: {
         fetchAnimeData() {
             axios.get('http://127.0.0.1:8000/api/animes/')
@@ -40,11 +31,11 @@ export default {
                 console.log(error.message);
             });
         },
-        addToFavorites(animeId, userId) {
+        addToFavorites(animeId) {
             const token = localStorage.getItem('token');
 
-            axios.post('http://127.0.0.1:8000/api/add_favorite_anime/', 
-                { anime_id: animeId, user_id: userId }, {
+            axios.post('http://127.0.0.1:8000/api/add_to_favorites/', 
+                { anime_id: animeId }, {
                 headers: {
                     'Authorization': `JWT ${token}`
                 },

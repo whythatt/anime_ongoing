@@ -13,17 +13,17 @@ const router = createRouter({
       component: Login
     },
     {
-      path: '/userinfo',
+      path: '/userInfo',
       name: 'UserInfo',
       component: UserInfo
     },
     {
-      path: '/animelist',
+      path: '/animeList',
       name: 'AnimeList',
       component: AnimeList
     },
     {
-      path: '/favorites_list',
+      path: '/favoritesList',
       name: 'FavoritesList',
       component: FavoritesList
     },

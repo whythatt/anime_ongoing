@@ -14,7 +14,19 @@ class AnimeViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
 class FavoriteAnimeViewSet(viewsets.ViewSet):
+    serializer_class = FavoriteAnimeSerializer
+
     def list(self, request):
         queryset = FavoriteAnime.objects.all()
         serializer = FavoriteAnimeSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def create(self, request):
+        anime_id = request.data.get('anime_id')
+        user_id = request.user.id
+        favorite_anime = FavoriteAnime.objects.create(
+            anime_id=anime_id,
+            user_id=user_id
+        )
+        serializer = self.serializer_class(favorite_anime)
         return Response(serializer.data)

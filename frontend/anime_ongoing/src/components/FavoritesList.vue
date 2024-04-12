@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 style="margin: 0 auto 0 auto;">FavoritesList</h1>
-        <div>{{ user }}</div>
+        {{ user }}
         <div v-for="favorite in favorites_list" :key="favorite.id">
             <div class="favorite">
                 <p>User: {{ favorite.user }} | Anime {{  favorite.anime }}</p>
@@ -12,21 +12,13 @@
 
 <script>
 import axios from 'axios';
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+export default {
     data() {
         return {
             favorites_list: [],
         }
     },
-
-    computed: {
-        user() {
-            return this.$store.getUser();
-        }
-    },
-
     methods: {
         fetchFavoritesList() {
             const token = localStorage.getItem('token');
@@ -48,5 +40,5 @@ export default defineComponent({
     mounted() {
         this.fetchFavoritesList();
     }
-});
+}
 </script>
