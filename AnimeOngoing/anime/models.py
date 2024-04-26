@@ -20,9 +20,10 @@ class Anime(models.Model):
     def __str__(self):
         return f"{self.title} | {self.status} | {self.mediatype}"
 
+
 class FavoriteAnime(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.id}. {self.anime.title}. {self.user.username}'
+        return f"{self.id}. {self.anime.title}. {self.user.username}"
