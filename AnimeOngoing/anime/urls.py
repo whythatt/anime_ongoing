@@ -9,7 +9,8 @@ router.register(r'animes', AnimeViewSet, basename='animes')
 
 urlpatterns = [
     path('favorites_list/', FavoriteAnimeViewSet.as_view({'get': 'list'})),
-    path('add_to_favorites/', FavoriteAnimeViewSet.as_view({'post': 'create'})),
+    path('favorites_add/', FavoriteAnimeViewSet.as_view({'post': 'create'})),
+    path('favorites_delete/', FavoriteAnimeViewSet.as_view({'delete': 'destroy'})),
 ]
 
 urlpatterns += router.urls

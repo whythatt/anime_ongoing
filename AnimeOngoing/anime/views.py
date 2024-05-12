@@ -2,6 +2,7 @@
 from authorization.models import MyUser
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Anime, FavoriteAnime
 from .serializers import AnimeSerializer, FavoriteAnimeSerializer
@@ -17,6 +18,7 @@ class AnimeViewSet(viewsets.ViewSet):
 
 class FavoriteAnimeViewSet(viewsets.ViewSet):
     serializer_class = FavoriteAnimeSerializer
+    permission_classes = [IsAuthenticated]
 
     def list(self, request):
         queryset = FavoriteAnime.objects.all()
@@ -31,3 +33,13 @@ class FavoriteAnimeViewSet(viewsets.ViewSet):
         )
         serializer = self.serializer_class(favorite_anime)
         return Response(serializer.data)
+
+    def destroy(self, request, anime_id=None):
+        anime_id = request.data.get("anime_id")
+        user_id = request.user.id
+        favorite_anime = FavoriteAnime.objects.filter(
+            anime_id=anime_id, user_id=user_id
+        )
+        favorite_anime.delete()
+        # favorite_anime.save()
+        return Response('anime was deleted <3')
