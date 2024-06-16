@@ -1,5 +1,4 @@
 from authorization.models import MyUser
-from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -16,6 +15,7 @@ class Anime(models.Model):
     episode_duration = models.CharField(max_length=100, blank=True, null=True)
     score = models.FloatField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    updated = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title} | {self.status} | {self.mediatype}"

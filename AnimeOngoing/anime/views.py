@@ -1,8 +1,8 @@
-### hui
 from authorization.models import MyUser
+from django.http import JsonResponse
 from rest_framework import viewsets
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from .models import Anime, FavoriteAnime
 from .serializers import AnimeSerializer, FavoriteAnimeSerializer
@@ -11,7 +11,11 @@ from .serializers import AnimeSerializer, FavoriteAnimeSerializer
 # Create your views here.
 class AnimeViewSet(viewsets.ViewSet):
     def list(self, request):
-        queryset = Anime.objects.all().order_by("id")
+        search_query = request.GET.get("search")
+        if search_query:
+            queryset = Anime.objects.filter(title__icontains=search_query)
+        else:
+            queryset = Anime.objects.all().order_by("id")
         serializer = AnimeSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -21,7 +25,8 @@ class FavoriteAnimeViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
     def list(self, request):
-        queryset = FavoriteAnime.objects.all()
+        user = request.user
+        queryset = FavoriteAnime.objects.filter(user=user)
         serializer = FavoriteAnimeSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -41,5 +46,4 @@ class FavoriteAnimeViewSet(viewsets.ViewSet):
             anime_id=anime_id, user_id=user_id
         )
         favorite_anime.delete()
-        # favorite_anime.save()
-        return Response('anime was deleted <3')
+        return Response(f"anime was deleted <3")
