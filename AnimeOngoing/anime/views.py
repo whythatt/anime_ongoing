@@ -12,8 +12,15 @@ from .serializers import AnimeSerializer, FavoriteAnimeSerializer
 class AnimeViewSet(viewsets.ViewSet):
     def list(self, request):
         search_query = request.GET.get("search")
-        if search_query:
+        sort_query = request.GET.get("sortBy")
+        if search_query and sort_query:
+            queryset = Anime.objects.filter(title__icontains=search_query).order_by(
+                sort_query
+            )
+        elif search_query:
             queryset = Anime.objects.filter(title__icontains=search_query)
+        elif sort_query:
+            queryset = Anime.objects.all().order_by(sort_query)
         else:
             queryset = Anime.objects.all().order_by("id")
         serializer = AnimeSerializer(queryset, many=True)
