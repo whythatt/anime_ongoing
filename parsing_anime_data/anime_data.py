@@ -1,4 +1,7 @@
+import concurrent.futures
 import json
+import os
+import re
 import timeit
 
 import requests
@@ -37,13 +40,15 @@ class WebsiteParser:
             tree = etree.fromstring(self.fetch_page(link), self.parser)
 
             ########### собрать все блоки и уних проверять и собирать ссылку
-            get_mediatypes = tree.xpath('//div[@class="anime-tile lozad"]')
-            for type in get_mediatypes:
+            anime_block = tree.xpath('//div[@class="anime-tile lozad"]')
+            for mediatype in anime_block:
                 if (
-                    type.xpath("@mediatypes")[0] == "tv"
-                    or type.xpath("@mediatypes")[0] == "movie"
+                    mediatype.xpath("@mediatypes")[0] == "tv"
+                    or mediatype.xpath("@mediatypes")[0] == "movie"
                 ):
-                    anime_link = "https://animeschedule.net" + type.xpath("@itemid")[0]
+                    anime_link = (
+                        "https://animeschedule.net" + mediatype.xpath("@itemid")[0]
+                    )
                     all_anime_links.append(anime_link)
                 else:
                     continue
@@ -56,6 +61,9 @@ class WebsiteParser:
             anime_page = etree.fromstring(self.fetch_page(link), self.parser)
 
             title = anime_page.xpath('//*[@id="anime-header-main-title"]/text()')[0]
+
+            image_url = anime_page.xpath('//*[@id="anime-poster"]')
+            image_url = image_url[0].attrib["src"]
 
             # союираю данные из блока с данными об аниме. Все это из одной пременной - data_block_data
             data_block_data = anime_page.xpath(
@@ -107,7 +115,9 @@ class WebsiteParser:
             if len(release_time_block) > 0:
                 release_time_block = release_time_block[0]
 
-                next_episode_count = release_time_block.xpath('//span[@class="release-time-episode-number"]/text()')[0].split(" ")[1]
+                next_episode_count = release_time_block.xpath(
+                    '//span[@class="release-time-episode-number"]/text()'
+                )[0].split(" ")[1]
 
                 release_date_next_ep = release_time_block.xpath(
                     './/*[@id="release-time-raw"]'
@@ -121,6 +131,7 @@ class WebsiteParser:
 
             anime_data = {
                 "title": title.strip(),
+                "image_url": image_url,
                 "next_episode_count": next_episode_count,
                 "total_episodes": total_episodes,
                 "release_date_next_ep": release_date_next_ep,
@@ -130,9 +141,29 @@ class WebsiteParser:
                 "status": status,
                 "episode_duration": episode_duration,
                 "score": score,
-                'description': description,
+                "description": description,
             }
             anime_data_list.append(anime_data)
+
+        def download_image(url, filename):
+            try:
+                with open(filename, "wb") as file:
+                    file.write(requests.get(url).content)
+            except Exception as err:
+                print(f"[ERROR] Не удалось загрузить {filename}: {err}")
+
+        def save_anime_pics(anime_data_list):
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                futures = []
+                for item in anime_data_list:
+                    image_url = item["image_url"]
+                    pic_name = self.clean_anime_title(item["title"])
+                    filename = f"/home/whythat/python/anime_ongoing/frontend/public/anime_pics/{pic_name}.jpg"
+                    futures.append(executor.submit(download_image, image_url, filename))
+                concurrent.futures.wait(futures)
+
+        save_anime_pics(anime_data_list)
+
         return anime_data_list
 
     def check(self, block, text, xpath):
@@ -143,11 +174,28 @@ class WebsiteParser:
             block = None
             return block
 
+    def clean_anime_title(self, title):
+        title = title.replace("/", "_")
+        title = title.replace(":", "_")
+        title = title.replace(" ", "_")
+        title = re.sub("_+", "_", title)
+
+        return title
+
+    def clean_anime_pics_folder(self, folder_path):
+        for filename in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, filename)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+
     def write_data(self, data_dict):
         with open("anime_data.json", "w") as json_file:
             json.dump(data_dict, json_file, indent=4)
 
     def run(self):
+        self.clean_anime_pics_folder(
+            "/home/whythat/python/anime_ongoing/frontend/public/anime_pics"
+        )
         html = self.fetch_page(url=self.url)
         anime_links = self.get_anime_links(html=html)
         anime_data_dict = self.parsing_anime_pages(anime_links=anime_links)
