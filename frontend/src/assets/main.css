@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: rgb(25, 25, 25);
+  font-family: 'Lexend Deca';
+  font-size: 16px;
+}
