@@ -23,7 +23,7 @@ import AnimeCardList from './components/AnimeCardList.vue'
 <style scoped>
 #main {
   width: 1022px;
-  margin: 40px auto 0 auto;
+  margin: 40px auto 40px auto;
 }
 
 #anime-list-h2 {

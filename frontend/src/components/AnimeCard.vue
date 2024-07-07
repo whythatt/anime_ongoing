@@ -79,7 +79,6 @@ const infoBlockPosition = computed(() => {
         <div class="release_date">Release date: {{ releaseDate }}</div>
       </div>
       <span class="description opacity-70">{{ description }}</span>
-      <button class="add_to_favorites">Add to favorites</button>
     </div>
   </div>
 </template>
@@ -126,7 +125,7 @@ const infoBlockPosition = computed(() => {
   padding: 10px;
   background-color: #2f2f2f;
   width: 356px;
-  height: 305px;
+  height: 260px;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
@@ -157,9 +156,5 @@ const infoBlockPosition = computed(() => {
   font-size: 15px;
   width: 166px;
   height: 37px;
-}
-.info_block button:hover {
-  background-color: #34a8ea;
-  transition: all 0.2s linear;
 }
 </style>
