@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
 const props = defineProps({
   title: String,
@@ -15,53 +15,34 @@ const props = defineProps({
   isFavorite: Boolean
 })
 
-const showInfo = ref(false)
-const isHoveringInfoBlock = ref(false)
-const cardRef = ref(null)
+const showInfoBlock = ref(false)
 
-const infoBlockPosition = computed(() => {
-  if (!cardRef.value) return {}
-  const { left, top, width, height } = cardRef.value.getBoundingClientRect()
-  return {
-    position: 'fixed',
-    top: `${top + 52}px`,
-    left: `${left + width + 3}px`
-  }
-})
+const showInfo = () => {
+  showInfoBlock.value = true
+}
+
+const hideInfo = () => {
+  showInfoBlock.value = false
+}
 </script>
 
 <template>
-  <div id="card" class="relative">
-    <div
-      ref="cardRef"
-      class="image-container"
-      @mouseenter="(showInfo = true), (isHoveringInfoBlock = true)"
-      @mouseleave="(showInfo = false), (isHoveringInfoBlock = false)"
-    >
+  <div class="main relative">
+    <div class="anime" @mouseenter="showInfo" @mouseleave="hideInfo">
       <img
         :src="isFavorite ? '/fill_heart.svg' : '/heart.svg'"
         alt=""
         class="heart-icon drop-shadow"
       />
       <img id="anime-logo" class="rounded-t-xl" :src="imageUrl" />
-      <div
-        id="anime-bottom-info"
-        class="rounded-b-xl text-base flex flex-col justify-between px-2 py-1"
-      >
+      <div class="anime-bottom-info rounded-b-xl text-base flex flex-col justify-between px-2 py-1">
         <span>{{ title }}</span>
         <span class="text-gray-400" style="font-size: 11px"
           >{{ mediatype }} - {{ totalEpisodes }} eps</span
         >
       </div>
     </div>
-
-    <div
-      :style="infoBlockPosition"
-      class="info_block"
-      v-if="showInfo || isHoveringInfoBlock"
-      @mouseenter="isHoveringInfoBlock = true"
-      @mouseleave="isHoveringInfoBlock = false"
-    >
+    <div class="info-block" v-if="showInfoBlock">
       <span class="title">{{ title }}</span>
       <div class="icon_info flex gap-2.5">
         <div class="score flex gap-1"><img src="/score.svg" alt="" />{{ score }}</div>
@@ -84,25 +65,20 @@ const infoBlockPosition = computed(() => {
 </template>
 
 <style>
-#anime-bottom-info {
+.anime-bottom-info {
   background-color: #2f2f2f;
   color: #7cbee3;
   height: 79px;
 }
 
-#card {
-  max-width: 185px;
-  max-height: 344px;
-  min-width: 185px;
-  min-height: 344px;
-}
-
-.image-container {
+.anime {
   position: relative;
   display: inline-block;
+  width: 185px;
+  height: 344px;
 }
 
-.image-container img {
+.anime img {
   max-width: 100%;
   height: auto;
 }
@@ -117,9 +93,11 @@ const infoBlockPosition = computed(() => {
   cursor: pointer;
 }
 
-.info_block {
-  position: fixed;
-  z-index: 1;
+.info-block {
+  position: absolute;
+  top: 10px;
+  left: 105%;
+  z-index: 10;
   color: #c5c5c5;
   border-radius: 15px;
   padding: 10px;
@@ -147,14 +125,5 @@ const infoBlockPosition = computed(() => {
 .text_info,
 .description {
   font-size: 13px;
-}
-
-.info_block button {
-  background-color: #7cbee3;
-  border-radius: 10px;
-  color: #1d1d1d;
-  font-size: 15px;
-  width: 166px;
-  height: 37px;
 }
 </style>
