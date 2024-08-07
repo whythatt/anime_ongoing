@@ -121,7 +121,7 @@ class WebsiteParser:
                 )[0].split(" ")[1]
 
                 release_date_next_ep = release_time_block.xpath(
-                    './/*[@id="release-time-raw"]'
+                    '//*[@class="release-time"]'
                 )[0].get("datetime")
                 # форматирую полученную строку времени нужный мне формат
                 release_date_next_ep = date_form(release_date_next_ep)
@@ -160,7 +160,9 @@ class WebsiteParser:
                 for item in anime_data_list:
                     image_url = item["image_url"]
                     pic_name = item["pic_name"]
-                    filename = f"/home/whythat/python/anime_ongoing/frontend/public/anime_pics/{pic_name}"
+                    filename = (
+                        f"/home/whythat/python/anime_ongoing/frontend/public/{pic_name}"
+                    )
                     futures.append(executor.submit(download_image, image_url, filename))
                 concurrent.futures.wait(futures)
 
@@ -180,6 +182,10 @@ class WebsiteParser:
         title = title.replace("/", "_")
         title = title.replace(":", "_")
         title = title.replace(" ", "_")
+        title = title.replace("?", "")
+        title = title.replace("!", "")
+        title = title.replace("#", "")
+        title = title.replace(".", "")
         title = re.sub("_+", "_", title)
 
         return title

@@ -11,16 +11,24 @@ from .serializers import AnimeSerializer, FavoriteAnimeSerializer
 # Create your views here.
 class AnimeViewSet(viewsets.ViewSet):
     def list(self, request):
-        search_query = request.GET.get("search")
-        sort_query = request.GET.get("sortBy")
-        if search_query and sort_query:
-            queryset = Anime.objects.filter(title__icontains=search_query).order_by(
-                sort_query
+        search = request.GET.get("search")
+        filter = request.GET.get("filter")
+        if search and (filter == "movie" or filter == "tv"):
+            queryset = Anime.objects.filter(
+                title__icontains=search, mediatype__icontains=filter
             )
-        elif search_query:
-            queryset = Anime.objects.filter(title__icontains=search_query)
-        elif sort_query:
-            queryset = Anime.objects.all().order_by(sort_query)
+        elif search and (
+            filter == "ongoing" or filter == "upcoming" or filter == "delayed"
+        ):
+            queryset = Anime.objects.filter(
+                title__icontains=search, status__icontains=filter
+            )
+        elif search:
+            queryset = Anime.objects.filter(title__icontains=search)
+        elif filter == "movie" or filter == "tv":
+            queryset = Anime.objects.filter(mediatype__icontains=filter)
+        elif filter == "ongoing" or filter == "upcoming" or filter == "delayed":
+            queryset = Anime.objects.filter(status__icontains=filter)
         else:
             queryset = Anime.objects.all().order_by("id")
         serializer = AnimeSerializer(queryset, many=True)
