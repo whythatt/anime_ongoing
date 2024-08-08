@@ -46,11 +46,11 @@ watch(filters, fetchAnimes)
 <template>
   <link href="https://fonts.googleapis.com/css?family=Lexend Deca" rel="stylesheet" />
   <Header />
-  <div id="main">
-    <div id="anime-list-h2" class="flex flex-row justify-between mb-5">
-      <h2 class="text-2xl text-blue-400">Anime list</h2>
-      <div class="flex gap-x-3">
-        <select @change="onChangeSelect" class="focus:outline-none rounded-xl px-2" id="select">
+  <div class="main">
+    <div class="title-block">
+      <span>Anime list</span>
+      <div class="filters">
+        <select @change="onChangeSelect">
           <option value="">All</option>
           <option value="tv">TV</option>
           <option value="movie">Movie</option>
@@ -58,13 +58,7 @@ watch(filters, fetchAnimes)
           <option value="delayed">Delayed</option>
           <option value="upcoming">Upcoming</option>
         </select>
-        <input
-          @input="onChangeInput"
-          id="search"
-          class="focus:outline-none rounded-xl px-3 py-2"
-          type="text"
-          placeholder="Search.."
-        />
+        <input @input="onChangeInput" type="text" placeholder="Search.." />
       </div>
     </div>
     <AnimeCardList :animes="animes" />
@@ -72,25 +66,37 @@ watch(filters, fetchAnimes)
 </template>
 
 <style scoped>
-#main {
-  width: 1022px;
-  margin: 40px auto 40px auto;
+.main {
+  width: 1304px;
+  margin: 0 auto;
 }
 
-#anime-list-h2 {
-  color: #c5c5c5;
+.title-block {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.title-block span {
+  font-size: 23px;
 }
 
-#search {
-  width: 208px;
+input,
+select {
   height: 35px;
-  background-color: #2f2f2f;
-}
-
-#select {
+  border-radius: 5px;
+  outline: none;
+  background-color: rgba(206, 255, 208, 0.4);
   font-size: 15px;
-  width: 150px;
-  height: 35px;
-  background-color: #2f2f2f;
+}
+
+select {
+  width: 120px;
+  margin-right: 15px;
+  padding-left: 4px;
+}
+
+input {
+  width: 210px;
+  padding-left: 8px;
 }
 </style>

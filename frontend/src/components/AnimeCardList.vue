@@ -7,12 +7,12 @@ defineProps({
 </script>
 
 <template>
-  <div id="animes" class="flex flex-wrap gap-x-6 gap-y-8">
+  <div class="anime-list">
     <AnimeCard
       v-for="anime in animes"
       :key="anime.id"
       :title="anime.title"
-      :pic_name="anime.pic_name"
+      :picName="anime.pic_name"
       :totalEpisodes="anime.total_episodes"
       :releaseDateNextEp="anime.release_data_next_ep"
       :mediatype="anime.mediatype"
@@ -25,3 +25,13 @@ defineProps({
     />
   </div>
 </template>
+
+<style scoped>
+.anime-list {
+  display: grid;
+  grid-gap: 25px 20px;
+  grid-template-columns: repeat(auto-fill, 185px);
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+</style>
