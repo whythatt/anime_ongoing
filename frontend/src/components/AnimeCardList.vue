@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="anime-list">
+  <div class="anime-list" v-auto-animate>
     <AnimeCard
       v-for="anime in animes"
       :key="anime.id"
