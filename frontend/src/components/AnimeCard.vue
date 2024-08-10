@@ -21,7 +21,8 @@ const props = defineProps({
 <template>
   <div class="anime-card">
     <div class="anime-img">
-      <img :src="picName" alt="" />
+      <img class="anime-pic" :src="picName" alt="" />
+      <img class="favorite-icon" :src="isFavorite ? '/favorite.png' : '/unfavorite.png'" alt="" />
     </div>
     <div class="anime-title">
       {{ title }}
@@ -121,11 +122,20 @@ const props = defineProps({
   margin-bottom: 5px;
   border-radius: 4px;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
-.anime-img img {
+.anime-pic {
   width: 100%;
   height: 100%;
   border-radius: 4px;
+}
+.favorite-icon {
+  position: absolute;
+  opacity: 90%;
+  top: 7px;
+  left: 79%;
+  width: 30px;
+  filter: drop-shadow(0px 0px 10px rgba(163, 163, 163, 0.5));
 }
 
 .anime-title {
