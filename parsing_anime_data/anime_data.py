@@ -64,7 +64,7 @@ class WebsiteParser:
 
             image_url = anime_page.xpath('//*[@id="anime-poster"]')
             image_url = image_url[0].attrib["src"]
-            pic_name = f"anime_pics/{self.clean_anime_title(title)}.jpg"
+            pic_name = f"/anime_pics/{self.clean_anime_title(title)}.jpg"
 
             # союираю данные из блока с данными об аниме. Все это из одной пременной - data_block_data
             data_block_data = anime_page.xpath(

@@ -1,12 +1,64 @@
 <script setup>
+import { onMounted, reactive, ref, watch } from 'vue'
+import axios from 'axios'
+
 import AnimeCard from './AnimeCard.vue'
 
-defineProps({
-  animes: Array
+const animes = ref([])
+
+const filters = reactive({
+  filter: '',
+  search: ''
 })
+
+const onChangeSelect = (event) => {
+  filters.filter = event.target.value
+}
+const onChangeInput = (event) => {
+  filters.search = event.target.value
+}
+
+const fetchAnimes = async () => {
+  try {
+    const params = {
+      filter: filters.filter
+    }
+
+    if (filters.search) {
+      params.search = `${filters.search}`
+    }
+
+    const { data } = await axios.get('http://127.0.0.1:8000/api/animes/', {
+      params
+    })
+
+    animes.value = data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+onMounted(fetchAnimes)
+watch(filters, fetchAnimes)
 </script>
 
 <template>
+  <link href="https://fonts.googleapis.com/css?family=Lexend Deca" rel="stylesheet" />
+  <div class="title-block">
+    <span>Anime list</span>
+    <div class="filters">
+      <select @change="onChangeSelect">
+        <option value="">All</option>
+        <option value="tv">TV</option>
+        <option value="movie">Movie</option>
+        <option value="ongoing">Ongoing</option>
+        <option value="delayed">Delayed</option>
+        <option value="upcoming">Upcoming</option>
+      </select>
+      <input @input="onChangeInput" type="text" placeholder="Search.." />
+    </div>
+  </div>
+
   <div class="anime-list" v-auto-animate>
     <AnimeCard
       v-for="anime in animes"
@@ -29,7 +81,39 @@ defineProps({
 </template>
 
 <style scoped>
+.title-block {
+  display: flex;
+  justify-content: space-between;
+  width: 1304px;
+  margin: 0 auto 32px auto;
+}
+.title-block span {
+  font-size: 23px;
+}
+
+input,
+select {
+  height: 35px;
+  border-radius: 5px;
+  outline: none;
+  background-color: rgba(206, 255, 208, 0.4);
+  font-size: 15px;
+}
+
+select {
+  width: 120px;
+  margin-right: 15px;
+  padding-left: 4px;
+}
+
+input {
+  width: 210px;
+  padding-left: 8px;
+}
+
 .anime-list {
+  width: 1304px;
+  margin: 0 auto;
   display: grid;
   grid-gap: 25px 20px;
   grid-template-columns: repeat(auto-fill, 185px);
