@@ -14,7 +14,7 @@ const login = async () => {
     })
 
     // Save JWT token
-    localStorage.setItem('token', response.data.access)
+    localStorage.setItem('accessToken', response.data.access)
 
     // Redirect to protected page
     window.location.href = '/'

@@ -1,10 +1,12 @@
 <script setup>
 import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
+import debounce from 'lodash.debounce'
 
-import AnimeCard from './AnimeCard.vue'
+import AnimeCard from '../components/AnimeCard.vue'
 
 const animes = ref([])
+const favorites = ref([])
 
 const filters = reactive({
   filter: '',
@@ -14,9 +16,9 @@ const filters = reactive({
 const onChangeSelect = (event) => {
   filters.filter = event.target.value
 }
-const onChangeInput = (event) => {
+const onChangeInput = debounce((event) => {
   filters.search = event.target.value
-}
+}, 300)
 
 const fetchAnimes = async () => {
   try {
@@ -32,14 +34,47 @@ const fetchAnimes = async () => {
       params
     })
 
-    animes.value = data
+    animes.value = data.map((obj) => ({
+      ...obj,
+      isFavorite: false
+    }))
   } catch (err) {
     console.log(err)
   }
 }
 
-onMounted(fetchAnimes)
-watch(filters, fetchAnimes)
+const fetchFavorites = async () => {
+  try {
+    const accessToken = localStorage.getItem('accessToken')
+    if (!accessToken) {
+      console.warn('Токен доступа отсутствует')
+    }
+
+    const { data } = await axios.get('http://localhost:8000/api/favorites/', {
+      headers: { Authorization: `JWT ${accessToken}` }
+    })
+
+    favorites.value = data
+    animes.value.forEach((anime) => {
+      const isFavorite = favorites.value.some((favorite) => favorite.anime === anime.id)
+      anime.isFavorite = isFavorite
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+onMounted(async () => {
+  await fetchAnimes(), await fetchFavorites()
+})
+watch(
+  filters,
+  async () => {
+    await fetchAnimes()
+    await fetchFavorites()
+  },
+  { deep: true }
+)
 </script>
 
 <template>
@@ -63,6 +98,7 @@ watch(filters, fetchAnimes)
     <AnimeCard
       v-for="anime in animes"
       :key="anime.id"
+      :id="anime.id"
       :title="anime.title"
       :picName="anime.pic_name"
       :nextEpisodeCount="anime.next_episode_count"
@@ -75,7 +111,7 @@ watch(filters, fetchAnimes)
       :episodeDuration="anime.episode_duration"
       :score="anime.score"
       :description="anime.description"
-      :isFavorite="false"
+      :isFavorite="anime.isFavorite"
     />
   </div>
 </template>

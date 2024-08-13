@@ -1,18 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AnimeCardList from '../components/AnimeCardList.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'animeCardList',
-      component: AnimeCardList
+      name: 'animelist',
+      component: () => import('../pages/AnimeList.vue')
+    },
+    {
+      path: '/favorites',
+      name: 'favorites',
+      component: () => import('../pages/Favorites.vue')
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../components/Login.vue')
+      component: () => import('../pages/Login.vue')
     }
   ]
 })

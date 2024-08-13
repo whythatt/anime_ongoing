@@ -3,7 +3,7 @@
   <header class="">
     <RouterLink to="/" class="animelist-text link">animelist</RouterLink>
     <RouterLink to="/" class="logo">AO</RouterLink>
-    <RouterLink class="witelist-text link">waitlist</RouterLink>
+    <RouterLink to="/favorites" class="witelist-text link">waitlist</RouterLink>
     <RouterLink to="/login" class="login">
       <svg width="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

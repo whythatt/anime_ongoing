@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 const props = defineProps({
+  id: Number,
   title: String,
   picName: String,
   nextEpisodeCount: String,

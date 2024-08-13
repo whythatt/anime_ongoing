@@ -1,6 +1,12 @@
 <script setup>
+import { provide } from 'vue'
 import Header from './components/Header.vue'
-import AnimeCardList from './components/AnimeCardList.vue'
+
+const sosiHui = () => {
+  alert('vivalivay')
+}
+
+provide('sosi', sosiHui)
 </script>
 
 <template>
