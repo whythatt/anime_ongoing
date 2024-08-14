@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 
 const props = defineProps({
   id: Number,
@@ -15,7 +15,8 @@ const props = defineProps({
   episodeDuration: String,
   score: Number,
   description: String,
-  isFavorite: Boolean
+  isFavorite: Boolean,
+  onClickFavorite: Function
 })
 </script>
 
@@ -23,7 +24,12 @@ const props = defineProps({
   <div class="anime-card">
     <div class="anime-img">
       <img class="anime-pic" :src="picName" alt="" />
-      <img class="favorite-icon" :src="isFavorite ? '/favorite.png' : '/unfavorite.png'" alt="" />
+      <img
+        @click="onClickFavorite"
+        class="favorite-icon"
+        :src="isFavorite ? '/favorite.png' : '/unfavorite.png'"
+        alt=""
+      />
     </div>
     <div class="anime-title">
       {{ title }}

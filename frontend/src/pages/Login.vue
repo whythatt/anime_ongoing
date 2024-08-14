@@ -151,12 +151,12 @@ form {
 
 .email,
 .password {
-  background: rgba(206, 255, 208, 0.5);
+  background: rgba(206, 255, 208, 0.7);
   width: 330px;
   height: fit-content;
   padding: 18px;
   border-radius: 20px;
-  box-shadow: 0 0 42px rgba(143, 172, 145, 0.25);
+  box-shadow: 0 0 42px rgba(143, 172, 145, 0.2);
   display: flex;
   flex-direction: column;
   row-gap: 5px;

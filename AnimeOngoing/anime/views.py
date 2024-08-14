@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 from .models import Anime, FavoriteAnime
 from .serializers import AnimeSerializer, FavoriteAnimeSerializer
@@ -43,6 +44,13 @@ class FavoriteAnimeViewSet(viewsets.ViewSet):
         serializer = FavoriteAnimeSerializer(queryset, many=True)
         return Response(serializer.data)
 
+    def retrieve(self, request, pk=None):
+        user = request.user
+        queryset = FavoriteAnime.objects.filter(user=user)
+        favorite = get_object_or_404(queryset, pk=pk)
+        serializer = FavoriteAnimeSerializer(favorite)
+        return Response(serializer.data)
+
     def create(self, request):
         anime_id = request.data.get("anime_id")
         user_id = request.user.id
@@ -52,11 +60,9 @@ class FavoriteAnimeViewSet(viewsets.ViewSet):
         serializer = self.serializer_class(favorite_anime)
         return Response(serializer.data)
 
-    def destroy(self, request, anime_id=None):
-        anime_id = request.data.get("anime_id")
-        user_id = request.user.id
-        favorite_anime = FavoriteAnime.objects.filter(
-            anime_id=anime_id, user_id=user_id
-        )
+    def destroy(self, request, pk=None):
+        user = request.user
+        queryset = FavoriteAnime.objects.filter(user=user)
+        favorite_anime = get_object_or_404(queryset, pk=pk)
         favorite_anime.delete()
         return Response(f"anime was deleted <3")

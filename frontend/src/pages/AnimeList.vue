@@ -1,80 +1,15 @@
 <script setup>
-import { onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, reactive, ref, watch, inject } from 'vue'
 import axios from 'axios'
 import debounce from 'lodash.debounce'
 
 import AnimeCard from '../components/AnimeCard.vue'
 
-const animes = ref([])
-const favorites = ref([])
+const { filters, onChangeSelect, onChangeInput } = inject('filters')
+const { animes, fetchAnimes } = inject('animes')
+const { favorites, fetchFavorites } = inject('favorites')
 
-const filters = reactive({
-  filter: '',
-  search: ''
-})
-
-const onChangeSelect = (event) => {
-  filters.filter = event.target.value
-}
-const onChangeInput = debounce((event) => {
-  filters.search = event.target.value
-}, 300)
-
-const fetchAnimes = async () => {
-  try {
-    const params = {
-      filter: filters.filter
-    }
-
-    if (filters.search) {
-      params.search = `${filters.search}`
-    }
-
-    const { data } = await axios.get('http://127.0.0.1:8000/api/animes/', {
-      params
-    })
-
-    animes.value = data.map((obj) => ({
-      ...obj,
-      isFavorite: false
-    }))
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-const fetchFavorites = async () => {
-  try {
-    const accessToken = localStorage.getItem('accessToken')
-    if (!accessToken) {
-      console.warn('Токен доступа отсутствует')
-    }
-
-    const { data } = await axios.get('http://localhost:8000/api/favorites/', {
-      headers: { Authorization: `JWT ${accessToken}` }
-    })
-
-    favorites.value = data
-    animes.value.forEach((anime) => {
-      const isFavorite = favorites.value.some((favorite) => favorite.anime === anime.id)
-      anime.isFavorite = isFavorite
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-onMounted(async () => {
-  await fetchAnimes(), await fetchFavorites()
-})
-watch(
-  filters,
-  async () => {
-    await fetchAnimes()
-    await fetchFavorites()
-  },
-  { deep: true }
-)
+const addToFavorite = inject('addToFavorite')
 </script>
 
 <template>
@@ -111,6 +46,7 @@ watch(
       :episodeDuration="anime.episode_duration"
       :score="anime.score"
       :description="anime.description"
+      :onClickFavorite="() => addToFavorite(anime)"
       :isFavorite="anime.isFavorite"
     />
   </div>
