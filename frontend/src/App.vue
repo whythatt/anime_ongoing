@@ -54,7 +54,7 @@ const fetchFavorites = async () => {
       headers: { Authorization: `JWT ${accessToken}` }
     })
     animes.value = animes.value.map((anime) => {
-      const favorite = favs.find((favorite) => favorite.anime === anime.id)
+      const favorite = favs.find((favorite) => favorite.anime.id === anime.id)
 
       if (!favorite) {
         return anime
@@ -77,7 +77,7 @@ const addToFavorite = async (anime) => {
     if (!accessToken) {
       console.warn('Токен доступа отсутствует')
     }
-    const obj = { anime_id: anime.id }
+    const obj = { anime_id: anime.id, anime }
 
     if (!anime.isFavorite) {
       const { data } = await axios.post('http://localhost:8000/api/favorites/', obj, {

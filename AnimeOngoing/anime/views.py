@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
@@ -38,31 +38,31 @@ class FavoriteAnimeViewSet(viewsets.ViewSet):
     serializer_class = FavoriteAnimeSerializer
     permission_classes = [IsAuthenticated]
 
-    def list(self, request):
-        user = request.user
-        queryset = FavoriteAnime.objects.filter(user=user)
-        serializer = FavoriteAnimeSerializer(queryset, many=True)
-        return Response(serializer.data)
+    def get_queryset(self):
+        return FavoriteAnime.objects.filter(user=self.request.user)
 
-    def retrieve(self, request, pk=None):
-        user = request.user
-        queryset = FavoriteAnime.objects.filter(user=user)
-        favorite = get_object_or_404(queryset, pk=pk)
-        serializer = FavoriteAnimeSerializer(favorite)
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer = FavoriteAnimeSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def create(self, request):
         anime_id = request.data.get("anime_id")
-        user_id = request.user.id
+
         favorite_anime = FavoriteAnime.objects.create(
-            anime_id=anime_id, user_id=user_id
+            user_id=request.user.id, anime_id=anime_id
         )
-        serializer = self.serializer_class(favorite_anime)
+        serializer = FavoriteAnimeSerializer(favorite_anime)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = self.get_queryset()
+        favorite_anime = get_object_or_404(queryset, pk=pk)
+        serializer = FavoriteAnimeSerializer(favorite_anime)
         return Response(serializer.data)
 
     def destroy(self, request, pk=None):
-        user = request.user
-        queryset = FavoriteAnime.objects.filter(user=user)
+        queryset = self.get_queryset()
         favorite_anime = get_object_or_404(queryset, pk=pk)
         favorite_anime.delete()
-        return Response(f"anime was deleted <3")
+        return Response({"message": "Anime was deleted <3"}, status=204)
