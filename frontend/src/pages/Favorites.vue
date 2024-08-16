@@ -15,7 +15,7 @@ const fetchFavorites = async () => {
       headers: { Authorization: `JWT ${accessToken}` }
     })
 
-    favorites.value = data
+    console.log(data)
   } catch (err) {
     console.log(err)
   }

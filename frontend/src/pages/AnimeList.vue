@@ -7,7 +7,7 @@ import AnimeCard from '../components/AnimeCard.vue'
 
 const { filters, onChangeSelect, onChangeInput } = inject('filters')
 const { animes, fetchAnimes } = inject('animes')
-const { favorites, fetchFavorites } = inject('favorites')
+//const { favorites, fetchFavorites } = inject('favorites')
 
 const addToFavorite = inject('addToFavorite')
 </script>

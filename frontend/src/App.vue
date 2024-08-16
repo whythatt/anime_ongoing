@@ -6,7 +6,6 @@ import debounce from 'lodash.debounce'
 import Header from './components/Header.vue'
 
 const animes = ref([])
-const favorites = ref([])
 
 const filters = reactive({
   filter: '',
@@ -44,6 +43,34 @@ const fetchAnimes = async () => {
   }
 }
 
+const fetchFavorites = async () => {
+  try {
+    const accessToken = localStorage.getItem('accessToken')
+    if (!accessToken) {
+      console.warn('Токен доступа отсутствует')
+    }
+
+    const { data: favs } = await axios.get('http://localhost:8000/api/favorites/', {
+      headers: { Authorization: `JWT ${accessToken}` }
+    })
+    animes.value = animes.value.map((anime) => {
+      const favorite = favs.find((favorite) => favorite.anime === anime.id)
+
+      if (!favorite) {
+        return anime
+      }
+
+      return {
+        ...anime,
+        isFavorite: true,
+        favoriteId: favorite.id
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 const addToFavorite = async (anime) => {
   try {
     const accessToken = localStorage.getItem('accessToken')
@@ -71,27 +98,6 @@ const addToFavorite = async (anime) => {
   }
 }
 
-const fetchFavorites = async () => {
-  try {
-    const accessToken = localStorage.getItem('accessToken')
-    if (!accessToken) {
-      console.warn('Токен доступа отсутствует')
-    }
-
-    const { data } = await axios.get('http://localhost:8000/api/favorites/', {
-      headers: { Authorization: `JWT ${accessToken}` }
-    })
-
-    favorites.value = data
-    animes.value.forEach((anime) => {
-      const isFavorite = favorites.value.some((favorite) => favorite.anime === anime.id)
-      anime.isFavorite = isFavorite
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
-
 onMounted(async () => {
   await fetchAnimes(), await fetchFavorites()
 })
@@ -106,7 +112,6 @@ watch(
 
 provide('filters', { filters, onChangeSelect, onChangeInput })
 provide('animes', { animes, fetchAnimes })
-provide('favorites', { favorites, fetchFavorites })
 provide('addToFavorite', addToFavorite)
 </script>
 
