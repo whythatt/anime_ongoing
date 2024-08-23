@@ -6,6 +6,7 @@ import debounce from 'lodash.debounce'
 import Header from './components/Header.vue'
 
 const animes = ref([])
+const favorites = ref([])
 
 const filters = reactive({
   filter: '',
@@ -53,6 +54,7 @@ const fetchFavorites = async () => {
     const { data: favs } = await axios.get('http://localhost:8000/api/favorites/', {
       headers: { Authorization: `JWT ${accessToken}` }
     })
+    favorites.value = favs
     animes.value = animes.value.map((anime) => {
       const favorite = favs.find((favorite) => favorite.anime.id === anime.id)
 
@@ -71,7 +73,7 @@ const fetchFavorites = async () => {
   }
 }
 
-const addToFavorite = async (anime) => {
+const changeFavorites = async (anime) => {
   try {
     const accessToken = localStorage.getItem('accessToken')
     if (!accessToken) {
@@ -98,21 +100,10 @@ const addToFavorite = async (anime) => {
   }
 }
 
-onMounted(async () => {
-  await fetchAnimes(), await fetchFavorites()
-})
-watch(
-  filters,
-  async () => {
-    await fetchAnimes()
-    await fetchFavorites()
-  },
-  { deep: true }
-)
-
 provide('filters', { filters, onChangeSelect, onChangeInput })
 provide('animes', { animes, fetchAnimes })
-provide('addToFavorite', addToFavorite)
+provide('favorites', { favorites, fetchFavorites })
+provide('changeFavorites', changeFavorites)
 </script>
 
 <template>
