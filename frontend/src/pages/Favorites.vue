@@ -1,20 +1,32 @@
 <script setup>
-import { onMounted, ref, inject, watch } from 'vue'
+import { onMounted, ref, reactive, inject, watch } from 'vue'
+import debounce from 'lodash.debounce'
 import axios from 'axios'
 
 import AnimeCard from '../components/AnimeCard.vue'
+import Filters from '../components/Filters.vue'
 
 const favorites = ref([])
+const { filters, onChangeSelect, onChangeInput } = inject('filters')
 
 const fetchFavorites = async () => {
   try {
+    const params = {
+      filter: filters.filter
+    }
+
+    if (filters.search) {
+      params.search = `${filters.search}`
+    }
+
     const accessToken = localStorage.getItem('accessToken')
     if (!accessToken) {
       console.warn('Токен доступа отсутствует')
     }
 
     const { data } = await axios.get('http://localhost:8000/api/favorites/', {
-      headers: { Authorization: `JWT ${accessToken}` }
+      headers: { Authorization: `JWT ${accessToken}` },
+      params
     })
 
     favorites.value = data.map((obj) => ({
@@ -53,11 +65,11 @@ const changeFavorites = async (favorite) => {
   }
 }
 
-onMounted(() => fetchFavorites())
+onMounted(fetchFavorites)
 </script>
 
 <template>
-  <div class="title-block">Favorites list</div>
+  <Filters pageName="Favorites list" />
   <div class="favorites-list" v-auto-animate>
     <AnimeCard
       v-for="fav in favorites"

@@ -42,7 +42,38 @@ class FavoriteAnimeViewSet(viewsets.ViewSet):
         return FavoriteAnime.objects.filter(user=self.request.user)
 
     def list(self, request):
-        queryset = self.get_queryset()
+        user = self.request.user
+        search = request.GET.get("search")
+        filter = request.GET.get("filter")
+        if search and (filter == "movie" or filter == "tv"):
+            queryset = FavoriteAnime.objects.filter(
+                anime__title__icontains=search,
+                anime__mediatype__icontains=filter,
+                user=user,
+            )
+        elif search and (
+            filter == "ongoing" or filter == "upcoming" or filter == "delayed"
+        ):
+            queryset = FavoriteAnime.objects.filter(
+                anime__title__icontains=search,
+                anime__status__icontains=filter,
+                user=user,
+            )
+        elif search:
+            queryset = FavoriteAnime.objects.filter(
+                anime__title__icontains=search, user=user
+            )
+        elif filter == "movie" or filter == "tv":
+            queryset = FavoriteAnime.objects.filter(
+                anime__mediatype__icontains=filter, user=user
+            )
+        elif filter == "ongoing" or filter == "upcoming" or filter == "delayed":
+            queryset = FavoriteAnime.objects.filter(
+                anime__status__icontains=filter, user=user
+            )
+        else:
+            queryset = FavoriteAnime.objects.all().order_by("anime__id")
+
         serializer = FavoriteAnimeSerializer(queryset, many=True)
         return Response(serializer.data)
 

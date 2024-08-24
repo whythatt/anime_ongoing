@@ -4,7 +4,6 @@ import axios from 'axios'
 import debounce from 'lodash.debounce'
 
 const { filters, onChangeSelect, onChangeInput } = inject('filters')
-const { animes, fetchAnimes } = inject('animes')
 
 const props = defineProps({
   pageName: String
