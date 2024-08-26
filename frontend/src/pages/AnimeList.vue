@@ -4,12 +4,88 @@ import axios from 'axios'
 
 import AnimeCard from '../components/AnimeCard.vue'
 import Filters from '../components/Filters.vue'
-import FetchAnimes from '../components/FetchAnimes.vue'
 
-const { animes, fetchAnimes } = inject('animes')
-const { favorites, fetchFavorites } = inject('favorites')
-const { filters, onChangeSelect, onChangeInput } = inject('filters')
-const changeFavorites = inject('changeFavorites')
+const filters = inject('filters')
+
+const animes = ref([])
+const favorites = ref([])
+
+const fetchAnimes = async () => {
+  try {
+    const params = {
+      filter: filters.filter,
+      search: filters.search || ''
+    }
+
+    const { data } = await axios.get('http://127.0.0.1:8000/api/animes/', {
+      params
+    })
+
+    animes.value = data.map((obj) => ({
+      ...obj,
+      isFavorite: false,
+      favoriteId: null
+    }))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+const fetchFavorites = async () => {
+  try {
+    const accessToken = localStorage.getItem('accessToken')
+    if (!accessToken) {
+      console.warn('Токен доступа отсутствует')
+    }
+
+    const { data: favs } = await axios.get('http://localhost:8000/api/favorites/', {
+      headers: { Authorization: `JWT ${accessToken}` }
+    })
+    favorites.value = favs
+    animes.value = animes.value.map((anime) => {
+      const favorite = favs.find((favorite) => favorite.anime.id === anime.id)
+
+      if (!favorite) {
+        return anime
+      }
+
+      return {
+        ...anime,
+        isFavorite: true,
+        favoriteId: favorite.id
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+const changeFavorites = async (anime) => {
+  try {
+    const accessToken = localStorage.getItem('accessToken')
+    if (!accessToken) {
+      console.warn('Токен доступа отсутствует')
+    }
+    const obj = { anime_id: anime.id, anime }
+
+    if (!anime.isFavorite) {
+      const { data } = await axios.post('http://localhost:8000/api/favorites/', obj, {
+        headers: { Authorization: `JWT ${accessToken}` }
+      })
+
+      anime.isFavorite = true
+      anime.favoriteId = data.id
+    } else {
+      await axios.delete(`http://localhost:8000/api/favorites/${anime.favoriteId}/`, {
+        headers: { Authorization: `JWT ${accessToken}` }
+      })
+      anime.isFavorite = false
+      anime.favoriteId = null
+    }
+  } catch (err) {
+    console.error('Ошибка при добавлении/удалении закладки', err)
+  }
+}
 
 onMounted(async () => {
   await fetchAnimes(), await fetchFavorites()
@@ -27,7 +103,6 @@ watch(
 <template>
   <Filters pageName="Anime list" />
 
-  <FetchAnimes ref="animesComp" />
   <div class="anime-list" v-auto-animate>
     <AnimeCard
       v-for="anime in animes"

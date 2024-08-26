@@ -1,9 +1,10 @@
 <script setup>
 import { inject } from 'vue'
 import axios from 'axios'
-import debounce from 'lodash.debounce'
 
-const { filters, onChangeSelect, onChangeInput } = inject('filters')
+const filters = inject('filters')
+const onChangeSelect = inject('onChangeSelect')
+const onChangeInput = inject('onChangeInput')
 
 const props = defineProps({
   pageName: String

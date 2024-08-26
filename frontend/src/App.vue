@@ -5,9 +5,6 @@ import debounce from 'lodash.debounce'
 
 import Header from './components/Header.vue'
 
-const animes = ref([])
-const favorites = ref([])
-
 const filters = reactive({
   filter: '',
   search: ''
@@ -16,94 +13,14 @@ const filters = reactive({
 const onChangeSelect = (event) => {
   filters.filter = event.target.value
 }
+
 const onChangeInput = debounce((event) => {
   filters.search = event.target.value
 }, 300)
 
-const fetchAnimes = async () => {
-  try {
-    const params = {
-      filter: filters.filter
-    }
-
-    if (filters.search) {
-      params.search = `${filters.search}`
-    }
-
-    const { data } = await axios.get('http://127.0.0.1:8000/api/animes/', {
-      params
-    })
-
-    animes.value = data.map((obj) => ({
-      ...obj,
-      isFavorite: false,
-      favoriteId: null
-    }))
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-const fetchFavorites = async () => {
-  try {
-    const accessToken = localStorage.getItem('accessToken')
-    if (!accessToken) {
-      console.warn('Токен доступа отсутствует')
-    }
-
-    const { data: favs } = await axios.get('http://localhost:8000/api/favorites/', {
-      headers: { Authorization: `JWT ${accessToken}` }
-    })
-    favorites.value = favs
-    animes.value = animes.value.map((anime) => {
-      const favorite = favs.find((favorite) => favorite.anime.id === anime.id)
-
-      if (!favorite) {
-        return anime
-      }
-
-      return {
-        ...anime,
-        isFavorite: true,
-        favoriteId: favorite.id
-      }
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-const changeFavorites = async (anime) => {
-  try {
-    const accessToken = localStorage.getItem('accessToken')
-    if (!accessToken) {
-      console.warn('Токен доступа отсутствует')
-    }
-    const obj = { anime_id: anime.id, anime }
-
-    if (!anime.isFavorite) {
-      const { data } = await axios.post('http://localhost:8000/api/favorites/', obj, {
-        headers: { Authorization: `JWT ${accessToken}` }
-      })
-
-      anime.isFavorite = true
-      anime.favoriteId = data.id
-    } else {
-      await axios.delete(`http://localhost:8000/api/favorites/${anime.favoriteId}/`, {
-        headers: { Authorization: `JWT ${accessToken}` }
-      })
-      anime.isFavorite = false
-      anime.favoriteId = null
-    }
-  } catch (err) {
-    console.error('Ошибка при добавлении/удалении закладки', err)
-  }
-}
-
-provide('filters', { filters, onChangeSelect, onChangeInput })
-provide('animes', { animes, fetchAnimes })
-provide('favorites', { favorites, fetchFavorites })
-provide('changeFavorites', changeFavorites)
+provide('filters', filters)
+provide('onChangeSelect', onChangeSelect)
+provide('onChangeInput', onChangeInput)
 </script>
 
 <template>

@@ -1,22 +1,19 @@
 <script setup>
-import { onMounted, ref, reactive, inject, watch } from 'vue'
+import { onMounted, ref, inject, watch } from 'vue'
 import debounce from 'lodash.debounce'
 import axios from 'axios'
 
 import AnimeCard from '../components/AnimeCard.vue'
 import Filters from '../components/Filters.vue'
 
+const filters = inject('filters')
 const favorites = ref([])
-const { filters, onChangeSelect, onChangeInput } = inject('filters')
 
 const fetchFavorites = async () => {
   try {
     const params = {
-      filter: filters.filter
-    }
-
-    if (filters.search) {
-      params.search = `${filters.search}`
+      filter: filters.filter,
+      search: filters.search || ''
     }
 
     const accessToken = localStorage.getItem('accessToken')
@@ -66,6 +63,13 @@ const changeFavorites = async (favorite) => {
 }
 
 onMounted(fetchFavorites)
+watch(
+  filters,
+  async () => {
+    await fetchFavorites()
+  },
+  { deep: true }
+)
 </script>
 
 <template>
