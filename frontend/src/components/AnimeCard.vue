@@ -15,6 +15,7 @@ const props = defineProps({
   episodeDuration: String,
   score: Number,
   description: String,
+  updated: Boolean,
   isFavorite: Boolean,
   onClickFavorite: Function
 })
@@ -24,12 +25,15 @@ const props = defineProps({
   <div class="anime-card">
     <div class="anime-img">
       <img class="anime-pic" :src="picName" alt="" />
-      <img
-        @click="onClickFavorite"
-        class="favorite-icon"
-        :src="isFavorite ? '/favorite.png' : '/unfavorite.png'"
-        alt=""
-      />
+      <div class="fav--updated">
+        <div class="isUpdated" v-if="updated">NEW</div>
+        <img
+          @click="onClickFavorite"
+          class="favorite-icon"
+          :src="isFavorite ? '/favorite.png' : '/unfavorite.png'"
+          alt=""
+        />
+      </div>
     </div>
     <div class="anime-title">
       {{ title }}
@@ -131,18 +135,43 @@ const props = defineProps({
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   position: relative;
 }
+
 .anime-pic {
   width: 100%;
   height: 100%;
   border-radius: 4px;
 }
-.favorite-icon {
-  position: absolute;
-  opacity: 90%;
-  top: 7px;
-  left: 79%;
-  width: 30px;
+
+.isUpdated {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffde23;
+  border-radius: 4px;
+  width: 85px;
   filter: drop-shadow(0px 0px 10px rgba(163, 163, 163, 0.5));
+  opacity: 90%;
+}
+
+.favorite-icon {
+  opacity: 90%;
+  width: 30px;
+  filter: drop-shadow(0px 0px 7px rgba(163, 163, 163, 0.6));
+  transition: opacity 0.2s ease-in-out;
+}
+.favorite-icon:hover {
+  opacity: 1;
+}
+
+.fav--updated {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 185px;
+  padding: 0 7px;
+  position: absolute;
+  top: 7px;
+  color: #000;
 }
 
 .anime-title {

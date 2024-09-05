@@ -1,12 +1,14 @@
 <script setup>
 import { ref } from 'vue'
-import { login } from '../services/auth'
+import { signUp } from '../services/auth'
 
+const username = ref('')
 const email = ref('')
 const password = ref('')
+const re_password = ref('')
 
-const handleLogin = () => {
-  login(email.value, password.value)
+const handleSignUp = () => {
+  signUp(username.value, email.value, password.value, re_password.value)
 }
 </script>
 
@@ -21,9 +23,41 @@ const handleLogin = () => {
           fill="#CEFFD0"
         ></path>
       </svg>
-      <span>Login</span>
+      <span>SignUp</span>
     </div>
-    <form @submit.prevent="login">
+    <form @submit.prevent="signUp">
+      <div class="email">
+        <label for="email">Username</label>
+        <div class="email-input">
+          <svg
+            fill="#556358"
+            width="20"
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="796 796 200 200"
+            enable-background="new 796 796 200 200"
+            xml:space="preserve"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <g>
+                <g>
+                  <path
+                    d="M987.675,969.676c-6.521-22.754-21.304-41.99-40.878-54.33c-3.862-2.435-8.873-2.039-12.299,0.979 c-10.504,9.251-23.506,14.76-37.618,14.76c-14.391,0-27.624-5.723-38.236-15.304c-3.388-3.058-8.374-3.519-12.269-1.14 c-20.15,12.303-35.401,31.837-42.052,55.035c-1.787,6.223-0.531,12.933,3.364,18.109c3.905,5.169,10.005,8.215,16.48,8.215 h143.661c6.48,0,12.582-3.034,16.486-8.215C988.216,982.608,989.462,975.906,987.675,969.676z"
+                  ></path>
+                  <path
+                    d="M948.091,856.479c0,33.403-22.929,60.484-51.211,60.484c-28.28,0-51.206-27.081-51.206-60.484 c0-33.406,22.925-60.479,51.206-60.479C925.162,796,948.091,823.073,948.091,856.479z"
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+          <input type="text" placeholder="MobyDick" v-model="username" required />
+        </div>
+      </div>
       <div class="email">
         <label for="email">Email address</label>
         <div class="email-input">
@@ -89,10 +123,34 @@ const handleLogin = () => {
           />
         </div>
       </div>
-      <button @click="handleLogin">Login</button>
+      <div class="password">
+        <label for="password">Re password</label>
+        <div class="password-input">
+          <svg
+            style="padding-bottom: 4px"
+            width="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M5.5 10V7C5.5 5.27609 6.18482 3.62279 7.40381 2.40381C8.62279 1.18482 10.2761 0.5 12 0.5C13.7239 0.5 15.3772 1.18482 16.5962 2.40381C17.8152 3.62279 18.5 5.27609 18.5 7V10H19C20.6569 10 22 11.3431 22 13V20C22 21.6569 20.6569 23 19 23H5C3.34315 23 2 21.6569 2 20V13C2 11.3431 3.34315 10 5 10H5.5ZM9.52513 4.52513C10.1815 3.86875 11.0717 3.5 12 3.5C12.9283 3.5 13.8185 3.86875 14.4749 4.52513C15.1313 5.1815 15.5 6.07174 15.5 7V10H8.5V7C8.5 6.07174 8.86875 5.1815 9.52513 4.52513Z"
+                fill="#556358"
+              ></path>
+            </g>
+          </svg>
+          <input type="password" placeholder="••••••••••••" v-model="re_password" required />
+        </div>
+      </div>
+      <button @click="handleSignUp">SignUp</button>
     </form>
     <div class="bottom-links">
-      <RouterLink to="/signup" class="signup">Sign Up</RouterLink>
+      <RouterLink to="/login" class="login-low">Log in</RouterLink>
       <RouterLink to="/" class="forgot-pass">Forgot password?</RouterLink>
     </div>
     <!--<div v-if="error" class="error-message">
@@ -177,13 +235,13 @@ button {
   display: flex;
   justify-content: space-between;
 }
-.bottom-links .signup,
+.bottom-links .login-low,
 .bottom-links .forgot-pass {
   font-size: 14px;
   opacity: 0.7;
   cursor: pointer;
 }
-.bottom-links .signup:hover,
+.bottom-links .login-low:hover,
 .bottom-links .forgot-pass:hover {
   opacity: 1;
   transition: all 0.2s linear;

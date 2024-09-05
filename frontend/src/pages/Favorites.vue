@@ -19,19 +19,17 @@ const fetchFavorites = async () => {
     const accessToken = localStorage.getItem('accessToken')
     if (!accessToken) {
       console.warn('Токен доступа отсутствует')
+    } else {
+      const { data } = await axios.get('http://localhost:8000/api/favorites/', {
+        headers: { Authorization: `JWT ${accessToken}` },
+        params
+      })
+
+      favorites.value = data.map((obj) => ({
+        ...obj,
+        isFavorite: true
+      }))
     }
-
-    const { data } = await axios.get('http://localhost:8000/api/favorites/', {
-      headers: { Authorization: `JWT ${accessToken}` },
-      params
-    })
-
-    favorites.value = data.map((obj) => ({
-      ...obj,
-      isFavorite: true
-    }))
-
-    console.log(favorites.value)
   } catch (err) {
     console.log(err)
   }
@@ -43,18 +41,21 @@ const changeFavorites = async (favorite) => {
     if (!accessToken) {
       console.warn('Токен доступа отсутствует')
     }
-    const obj = { anime_id: favorite.anime.id }
 
     if (!favorite.isFavorite) {
+      const obj = { anime_id: favorite.anime.id }
+
       const { data } = await axios.post('http://localhost:8000/api/favorites/', obj, {
         headers: { Authorization: `JWT ${accessToken}` }
       })
 
       favorite.isFavorite = true
+      favorite.id = data.id
     } else {
       await axios.delete(`http://localhost:8000/api/favorites/${favorite.id}/`, {
         headers: { Authorization: `JWT ${accessToken}` }
       })
+
       favorite.isFavorite = false
     }
   } catch (err) {
@@ -91,8 +92,9 @@ watch(
       :episodeDuration="fav.anime.episode_duration"
       :score="fav.anime.score"
       :isFavorite="fav.isFavorite"
-      :onClickFavorite="() => changeFavorites(fav)"
+      :updated="fav.anime.updated"
       :description="fav.anime.description"
+      :onClickFavorite="() => changeFavorites(fav)"
     />
   </div>
 </template>

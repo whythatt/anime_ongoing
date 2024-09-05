@@ -36,25 +36,25 @@ const fetchFavorites = async () => {
     const accessToken = localStorage.getItem('accessToken')
     if (!accessToken) {
       console.warn('Токен доступа отсутствует')
+    } else {
+      const { data: favs } = await axios.get('http://localhost:8000/api/favorites/', {
+        headers: { Authorization: `JWT ${accessToken}` }
+      })
+      favorites.value = favs
+      animes.value = animes.value.map((anime) => {
+        const favorite = favs.find((favorite) => favorite.anime.id === anime.id)
+
+        if (!favorite) {
+          return anime
+        }
+
+        return {
+          ...anime,
+          isFavorite: true,
+          favoriteId: favorite.id
+        }
+      })
     }
-
-    const { data: favs } = await axios.get('http://localhost:8000/api/favorites/', {
-      headers: { Authorization: `JWT ${accessToken}` }
-    })
-    favorites.value = favs
-    animes.value = animes.value.map((anime) => {
-      const favorite = favs.find((favorite) => favorite.anime.id === anime.id)
-
-      if (!favorite) {
-        return anime
-      }
-
-      return {
-        ...anime,
-        isFavorite: true,
-        favoriteId: favorite.id
-      }
-    })
   } catch (err) {
     console.log(err)
   }

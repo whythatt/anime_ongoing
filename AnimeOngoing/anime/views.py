@@ -72,7 +72,7 @@ class FavoriteAnimeViewSet(viewsets.ViewSet):
                 anime__status__icontains=filter, user=user
             )
         else:
-            queryset = FavoriteAnime.objects.all().order_by("anime__id")
+            queryset = self.get_queryset()
 
         serializer = FavoriteAnimeSerializer(queryset, many=True)
         return Response(serializer.data)
