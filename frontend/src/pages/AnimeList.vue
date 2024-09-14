@@ -8,6 +8,11 @@ import Filters from '../components/Filters.vue'
 const filters = inject('filters')
 
 const animes = ref([])
+const displayedAnimes = ref([]) // Аниме, которые будут отображаться
+const limit = 48 // Количество загружаемых аниме за раз
+const currentIndex = ref(0) // Индекс текущего загружаемого аниме
+const hasMore = ref(true) // Флаг для проверки наличия дополнительных данных
+
 const favorites = ref([])
 
 const fetchAnimes = async () => {
@@ -26,8 +31,21 @@ const fetchAnimes = async () => {
       isFavorite: false,
       favoriteId: null
     }))
+
+    loadMore()
   } catch (err) {
     console.log(err)
+  }
+}
+
+const loadMore = () => {
+  const nextBatch = animes.value.slice(currentIndex.value, currentIndex.value + limit)
+  displayedAnimes.value.push(...nextBatch) // Добавляем новые аниме к отображаемым
+  currentIndex.value += limit // Увеличиваем индекс
+
+  // Проверяем, есть ли еще аниме для загрузки
+  if (currentIndex.value >= animes.value.length) {
+    hasMore.value = false // Если все аниме загружены, скрываем кнопку
   }
 }
 
@@ -105,7 +123,7 @@ watch(
 
   <div class="anime-list" v-auto-animate>
     <AnimeCard
-      v-for="anime in animes"
+      v-for="anime in displayedAnimes"
       :key="anime.id"
       :id="anime.id"
       :title="anime.title"
@@ -124,6 +142,7 @@ watch(
       :isFavorite="anime.isFavorite"
     />
   </div>
+  <button class="load-more" v-if="hasMore" @click="loadMore">Load more</button>
 </template>
 
 <style scoped>
@@ -134,6 +153,15 @@ watch(
   grid-gap: 25px 20px;
   grid-template-columns: repeat(auto-fill, 185px);
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+}
+
+.load-more {
+  display: block;
+  margin: 0 auto 30px auto;
+  font-size: 18px;
+  background-color: rgba(206, 255, 208, 0.9);
+  padding: 10px 20px;
+  border-radius: 30px;
 }
 </style>
