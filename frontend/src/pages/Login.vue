@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { login } from '../services/auth'
+import { errorMessage } from '../services/auth'
 
 const email = ref('')
 const password = ref('')
@@ -95,7 +96,7 @@ const handleLogin = () => {
       <RouterLink to="/signup" class="signup">Sign Up</RouterLink>
       <RouterLink to="/" class="forgot-pass">Forgot password?</RouterLink>
     </div>
-    <!--<div v-if="error" class="error-message">
+    <div v-if="errorMessage" class="error-message">
       <svg width="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           fill-rule="evenodd"
@@ -104,8 +105,8 @@ const handleLogin = () => {
           fill="#ec6969"
         ></path>
       </svg>
-      <div>{{ error }}</div>
-        </div>-->
+      <div>{{ errorMessage }}</div>
+    </div>
   </div>
 </template>
 

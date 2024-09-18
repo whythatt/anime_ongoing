@@ -4,6 +4,8 @@ import axios from 'axios'
 const accessToken = ref(localStorage.getItem('accessToken') || '')
 const refreshToken = ref(localStorage.getItem('refreshToken') || '')
 
+const errorMessage = ref('')
+
 const login = async (email, password) => {
   try {
     const response = await axios.post('http://127.0.0.1:8000/auth/jwt/create', {
@@ -20,6 +22,10 @@ const login = async (email, password) => {
     // redirect
     window.location.href = '/'
   } catch (err) {
+    // Обработка ошибки
+    if (err.response && err.response.status === 401) {
+      errorMessage.value = 'Incorrect email or password' // Устанавливаем сообщение об ошибке
+    }
     console.error(err)
   }
 }
@@ -83,4 +89,13 @@ const checkTokenValidity = () => {
   }
 }
 
-export { login, signUp, logout, refreshAccessToken, checkTokenValidity, accessToken, refreshToken }
+export {
+  login,
+  errorMessage,
+  signUp,
+  logout,
+  refreshAccessToken,
+  checkTokenValidity,
+  accessToken,
+  refreshToken
+}
