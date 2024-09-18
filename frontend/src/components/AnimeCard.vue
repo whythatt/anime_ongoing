@@ -155,6 +155,7 @@ const props = defineProps({
 
 .favorite-icon {
   opacity: 90%;
+  margin-left: auto;
   width: 30px;
   filter: drop-shadow(0px 0px 7px rgba(163, 163, 163, 0.6));
   transition: opacity 0.2s ease-in-out;
