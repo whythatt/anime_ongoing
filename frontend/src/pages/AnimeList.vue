@@ -7,10 +7,10 @@ import Filters from '../components/Filters.vue'
 
 const filters = inject('filters')
 
-const animes = ref([])
+const animes = ref([]) // Все аниме
 const displayedAnimes = ref([]) // Аниме, которые будут отображаться
 const limit = 48 // Количество загружаемых аниме за раз
-const currentIndex = ref(0) // Индекс текущего загружаемого аниме
+const currentCount = ref(0) // Количество уже загруженных аниме
 const hasMore = ref(true) // Флаг для проверки наличия дополнительных данных
 
 const favorites = ref([])
@@ -32,21 +32,25 @@ const fetchAnimes = async () => {
       favoriteId: null
     }))
 
-    //loadMore()
+    currentCount.value = 0
+    displayedAnimes.value = [] // Очищаем отображаемые аниме
+    loadMore() // Загружаем первые 48 аниме
   } catch (err) {
     console.log(err)
   }
 }
 
 const loadMore = () => {
-  const nextBatch = animes.value.slice(currentIndex.value, currentIndex.value + limit)
-  displayedAnimes.value.push(...nextBatch) // Добавляем новые аниме к отображаемым
-  currentIndex.value += limit // Увеличиваем индекс
+  const nextBatch = animes.value.slice(currentCount.value, currentCount.value + limit)
 
-  // Проверяем, есть ли еще аниме для загрузки
-  if (currentIndex.value >= animes.value.length) {
-    hasMore.value = false // Если все аниме загружены, скрываем кнопку
+  if (nextBatch.length > 0) {
+    displayedAnimes.value.push(...nextBatch) // Добавляем новые аниме к отображаемым
+    currentCount.value += nextBatch.length // Увеличиваем количество загруженных аниме
+
+    // Проверяем наличие дополнительных данных для загрузки
+    hasMore.value = currentCount.value < animes.value.length
   }
+  fetchFavorites() // перепроверяю какие аниме в избранном
 }
 
 const fetchFavorites = async () => {
@@ -59,7 +63,7 @@ const fetchFavorites = async () => {
         headers: { Authorization: `JWT ${accessToken}` }
       })
       favorites.value = favs
-      animes.value = animes.value.map((anime) => {
+      displayedAnimes.value = displayedAnimes.value.map((anime) => {
         const favorite = favs.find((favorite) => favorite.anime.id === anime.id)
 
         if (!favorite) {
