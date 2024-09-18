@@ -32,7 +32,7 @@ const fetchAnimes = async () => {
       favoriteId: null
     }))
 
-    loadMore()
+    //loadMore()
   } catch (err) {
     console.log(err)
   }
