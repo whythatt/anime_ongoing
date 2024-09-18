@@ -30,7 +30,7 @@ const props = defineProps({
         <img
           @click="onClickFavorite"
           class="favorite-icon"
-          :src="isFavorite ? '/favorite.png' : '/unfavorite.png'"
+          :src="isFavorite ? '/favorite.svg' : '/unfavorite.svg'"
           alt=""
         />
       </div>
