@@ -152,12 +152,18 @@ SIMPLE_JWT = {
 
 DJOSER = {
     "LOGIN_FIELD": "email",
-    "PASSWORD_RESET_CONFIRM_URL": "#/password/reset/confirm/{uid}/{token}",
+    "PASSWORD_RESET_CONFIRM_URL": "auth/users/reset_password_confirm/{uid}/{token}",
     "USERNAME_RESET_CONFIRM_URL": "#/username/reset/confirm/{uid}/{token}",
     "ACTIVATION_URL": "#/activate/{uid}/{token}",
     "USER_CREATE_PASSWORD_RETYPE": True,
-    "SEND_ACTIVATION_EMAIL": False,
+    "SEND_ACTIVATION_EMAIL": True,
     "SERIALIZERS": {},
 }
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "zakrogo513@gmail.com"  # Ваш адрес электронной почты
+EMAIL_HOST_PASSWORD = "ppsh wgie mffj xhkz"  # Используйте пароль приложения, если включена двухфакторная аутентификация
+EMAIL_USE_TLS = True
 
 AUTH_USER_MODEL = "authorization.MyUser"
