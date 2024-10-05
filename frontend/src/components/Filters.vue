@@ -44,8 +44,12 @@ select {
   height: 35px;
   border-radius: 5px;
   outline: none;
-  background-color: rgba(206, 255, 208, 0.4);
+  background-color: rgba(40, 28, 21, 0.1);
   font-size: 15px;
+}
+::placeholder {
+  color: #634b36;
+  opacity: 0.4;
 }
 
 select {

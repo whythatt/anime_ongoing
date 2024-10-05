@@ -15,6 +15,14 @@ const hasMore = ref(true) // Флаг для проверки наличия д�
 
 const favorites = ref([])
 
+// для того чтобы кнопка загружалась последней
+const dataLoaded = ref(false)
+onMounted(() => {
+  setTimeout(() => {
+    dataLoaded.value = true // Устанавливаем флаг, когда данные загружены
+  }, 2000) // Задержка в 2 секунды для демонстрации
+})
+
 const fetchAnimes = async () => {
   try {
     const params = {
@@ -146,7 +154,10 @@ watch(
       :isFavorite="anime.isFavorite"
     />
   </div>
-  <button class="load-more" v-if="hasMore" @click="loadMore">Load more</button>
+  <button class="load-more" v-if="hasMore && dataLoaded && currentCount > 0" @click="loadMore">
+    Load more
+  </button>
+  <span class="nothing-found" v-if="dataLoaded && currentCount == 0">Nothing found</span>
 </template>
 
 <style scoped>
@@ -164,8 +175,16 @@ watch(
   display: block;
   margin: 0 auto 30px auto;
   font-size: 18px;
-  background-color: rgba(206, 255, 208, 0.9);
+  background-color: rgba(116, 140, 68, 0.7);
   padding: 10px 20px;
   border-radius: 30px;
+}
+
+.nothing-found {
+  opacity: 0.7;
+  display: block;
+  margin: 0 auto 30px auto;
+  font-size: 24px;
+  width: fit-content;
 }
 </style>

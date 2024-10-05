@@ -48,12 +48,12 @@ const props = defineProps({
       </div>
       <div class="next-episode" v-else>Ep ? will air on ?</div>
       <!-- class .next-episode -->
-      <!-- class .circle-info -->
-      <div class="circle-info">
-        <div class="score" v-if="score">
+      <!-- class .score--mediatype--eps -->
+      <div class="score--mediatype--eps">
+        <div class="score">
           <svg
             style="width: 16px"
-            viewBox="0 -0.5 21 21"
+            viewBox="0 1 21 21"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -69,7 +69,7 @@ const props = defineProps({
                 <g
                   id="Dribbble-Light-Preview"
                   transform="translate(-99.000000, -320.000000)"
-                  fill="#EBCB18"
+                  fill="#D79921"
                 >
                   <g id="icons" transform="translate(56.000000, 160.000000)">
                     <path
@@ -81,25 +81,26 @@ const props = defineProps({
               </g>
             </g>
           </svg>
-          <span>{{ score }}</span>
+          <span style="opacity: 0.7" v-if="score">{{ score }}</span>
+          <span style="opacity: 0.7" v-else>0.00</span>
         </div>
         <div class="eps--mediatype" v-if="totalEpisodes || mediatype">
           <svg
-            style="width: 17px"
+            style="width: 19px"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            stroke="#38B6D9"
+            stroke="#458588"
           >
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
               <path
-                fill="#38B6D9"
+                fill="#458588"
                 d="M3 17V9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
               ></path>
               <path
-                stroke="#38B6D9"
+                stroke="#458588"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
@@ -107,11 +108,18 @@ const props = defineProps({
               ></path>
             </g>
           </svg>
-          <span v-if="totalEpisodes">{{ mediatype }} • {{ totalEpisodes }} episodes</span>
-          <span v-else>{{ mediatype }} • ? episodes</span>
+          <span style="opacity: 0.7" v-if="totalEpisodes"
+            >{{ mediatype }} • {{ totalEpisodes }} episodes</span
+          >
+          <span style="opacity: 0.7" v-else>{{ mediatype }} • ? episodes</span>
         </div>
       </div>
+      <!-- end class .score--mediatype--eps -->
       <!-- class .circle-info -->
+      <div class="circle-info">
+        <div class="status" v-if="status">{{ status }}</div>
+        <div class="episodeDuration" v-if="episodeDuration">duration {{ episodeDuration }}</div>
+      </div>
       <div class="season">{{ season }}</div>
     </div>
   </div>
@@ -123,7 +131,7 @@ const props = defineProps({
   cursor: pointer;
 }
 .anime-card:hover {
-  color: #049548;
+  color: #748c3a;
   transition: all 0.3s linear;
 }
 
@@ -190,10 +198,10 @@ const props = defineProps({
   width: 294px;
   height: 154px;
   padding: 14px;
-  background-color: #ffffff;
+  background-color: #fffaf5;
   border-radius: 6px;
   box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.2);
-  color: #556358;
+  color: #634b36;
 
   display: none;
   position: absolute;
@@ -201,7 +209,7 @@ const props = defineProps({
   top: 12px;
 }
 .info-block .next-episode {
-  margin-bottom: 20px;
+  margin-bottom: 13px;
 }
 
 .anime-card:hover .info-block {
@@ -220,27 +228,44 @@ const props = defineProps({
   right: 100%;
 }
 
+.score--mediatype--eps,
 .circle-info {
   display: flex;
-  column-gap: 12px;
+  column-gap: 16px;
 }
-.circle-info .score,
-.circle-info .eps--mediatype {
-  height: 26px;
-  width: fit-content;
-  background-color: rgba(0, 0, 0, 0.1);
-  padding: 6px 12px;
-  border-radius: 60px;
+
+.score--mediatype--eps .score,
+.score--mediatype--eps .eps--mediatype {
   font-size: 15px;
   display: flex;
   column-gap: 6px;
   align-items: center;
+  margin-bottom: 11px;
+}
+
+.circle-info .status,
+.circle-info .episodeDuration {
+  color: #ffdbb7;
+  height: 26px;
+  width: fit-content;
+  padding: 6px 16px;
+  border-radius: 60px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.circle-info .status {
+  background: #748c3a;
+  text-transform: lowercase;
+}
+.circle-info .episodeDuration {
+  background: #458588;
 }
 
 .info-block .season {
-  opacity: 70%;
-  margin-top: 38px;
+  opacity: 0.7;
+  margin-top: 15px;
   float: right;
-  font-size: 15px;
+  font-size: 13px;
 }
 </style>
