@@ -56,6 +56,7 @@ header {
   align-items: center;
   column-gap: 15px;
   margin-bottom: 37px;
+  z-index: 10;
 }
 header RouterLink,
 .login {

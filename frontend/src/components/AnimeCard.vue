@@ -1,6 +1,12 @@
 <script setup>
 import { ref, inject } from 'vue'
 
+const hoverDetails = ref(false)
+
+const onClickShowDetails = () => {
+  hoverDetails.value = true
+}
+
 const props = defineProps({
   id: Number,
   title: String,
@@ -22,7 +28,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="anime-card">
+  <div class="anime-card" @click="onClickShowDetails">
     <div class="anime-img">
       <img class="anime-pic" :src="picName" alt="" />
       <div class="fav--updated">
@@ -47,7 +53,7 @@ const props = defineProps({
         Ep {{ nextEpisodeCount }} will air on ?
       </div>
       <div class="next-episode" v-else>Ep ? will air on ?</div>
-      <!-- class .next-episode -->
+      <!-- END class .next-episode -->
       <!-- class .score--mediatype--eps -->
       <div class="score--mediatype--eps">
         <div class="score">
@@ -122,10 +128,58 @@ const props = defineProps({
       </div>
       <div class="season">{{ season }}</div>
     </div>
+    <teleport to="body">
+      <div class="details-bg" v-if="hoverDetails">
+        <div class="details">
+          <div class="img-block">
+            <img class="anime-pic" :src="picName" alt="" />
+            <button class="favorite-button">
+              <svg
+                fill="#FFDBB7"
+                viewBox="-1 0 19 19"
+                xmlns="http://www.w3.org/2000/svg"
+                class="cf-icon-svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="m12.673 10.779.798 4.02c.221 1.11-.407 1.566-1.395 1.013L8.5 13.81l-3.576 2.002c-.988.553-1.616.097-1.395-1.013l.397-2.001.401-2.02-1.51-1.397-1.498-1.385c-.832-.769-.592-1.507.532-1.64l2.026-.24 2.044-.242 1.717-3.722c.474-1.028 1.25-1.028 1.724 0l1.717 3.722 2.044.242 2.026.24c1.124.133 1.364.871.533 1.64L14.184 9.38z"
+                  ></path>
+                </g>
+              </svg>
+              <span>Add</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </teleport>
   </div>
 </template>
 
 <style>
+.details-bg {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
+.details {
+  width: 792px;
+  height: fit-content;
+  padding: 25px;
+  background: rgba(255, 250, 245, 0.68);
+  border-radius: 5px;
+  backdrop-filter: blur(10px);
+}
+
 .anime-card {
   position: relative;
   cursor: pointer;
@@ -148,6 +202,17 @@ const props = defineProps({
   width: 100%;
   height: 100%;
   border-radius: 4px;
+}
+
+.img-block {
+  position: relative;
+  width: 199px;
+  height: 285px;
+}
+
+.favorite-button {
+  display: flex;
+  color: #ffdbb7;
 }
 
 .isUpdated {
