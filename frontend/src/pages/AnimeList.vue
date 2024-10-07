@@ -155,7 +155,19 @@ watch(
     />
   </div>
   <button class="load-more" v-if="hasMore && dataLoaded && currentCount > 0" @click="loadMore">
-    Load more
+    <svg viewBox="0 0 24 24" fill="none" width="36" xmlns="http://www.w3.org/2000/svg">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+      <g id="SVGRepo_iconCarrier">
+        <path
+          d="M12 6.5L12 17.5M12 17.5L16 12.9118M12 17.5L8 12.9118"
+          stroke="#FFDBB7"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </g>
+    </svg>
   </button>
   <span class="nothing-found" v-if="dataLoaded && currentCount == 0">Nothing found</span>
 </template>
@@ -175,9 +187,9 @@ watch(
   display: block;
   margin: 0 auto 30px auto;
   font-size: 18px;
-  background-color: rgba(116, 140, 68, 0.7);
-  padding: 10px 20px;
-  border-radius: 30px;
+  background-color: #748c3a;
+  padding: 7px 7px;
+  border-radius: 50%;
 }
 
 .nothing-found {

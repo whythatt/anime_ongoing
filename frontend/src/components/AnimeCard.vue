@@ -265,7 +265,8 @@ const props = defineProps({
 .text-details {
   margin-top: 10px;
   width: 512px;
-  height: 222px;
+  min-height: 222px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   row-gap: 13px;
