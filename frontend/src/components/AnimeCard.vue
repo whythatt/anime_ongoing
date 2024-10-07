@@ -1,10 +1,13 @@
 <script setup>
-import { ref, inject } from 'vue'
+import { ref, inject, watch } from 'vue'
 
-const hoverDetails = ref(false)
+const showDetails = ref(false)
 
-const onClickShowDetails = () => {
-  hoverDetails.value = true
+const openDetails = () => {
+  showDetails.value = true
+}
+const closeDetails = () => {
+  showDetails.value = false
 }
 
 const props = defineProps({
@@ -28,18 +31,10 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="anime-card" @click="onClickShowDetails">
+  <div class="anime-card" @click="openDetails">
     <div class="anime-img">
       <img class="anime-pic" :src="picName" alt="" />
-      <div class="fav--updated">
-        <div class="isUpdated" v-if="updated">NEW</div>
-        <img
-          @click="onClickFavorite"
-          class="favorite-icon"
-          :src="isFavorite ? '/favorite.svg' : '/unfavorite.svg'"
-          alt=""
-        />
-      </div>
+      <div class="isUpdated" v-if="updated">NEW</div>
     </div>
     <div class="anime-title">
       {{ title }}
@@ -128,12 +123,13 @@ const props = defineProps({
       </div>
       <div class="season">{{ season }}</div>
     </div>
-    <teleport to="body">
-      <div class="details-bg" v-if="hoverDetails">
+    <teleport to="body" v-if="showDetails">
+      <div class="block-details">
+        <div class="details-bg" @click="closeDetails"></div>
         <div class="details">
           <div class="img-block">
             <img class="anime-pic" :src="picName" alt="" />
-            <button class="add-favorite-button" v-if="!isFavorite">
+            <button class="add-favorite-button" v-if="!isFavorite" @click="onClickFavorite">
               <svg
                 fill="#FFDBB7"
                 viewBox="-1 1 19 19"
@@ -151,7 +147,7 @@ const props = defineProps({
               </svg>
               <span>Add</span>
             </button>
-            <button class="remove-favorite-button" v-else>
+            <button class="remove-favorite-button" v-else @click="onClickFavorite">
               <svg
                 fill="#FFDBB7"
                 viewBox="-1 1 19 19"
@@ -182,26 +178,33 @@ const props = defineProps({
 </template>
 
 <style>
-.details-bg {
+.block-details {
   position: fixed;
-  background: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 9;
+  justify-content: center;
 }
 
 .details {
   width: 792px;
   height: fit-content;
-  padding: 25px;
+  padding: 30px;
   background: rgba(255, 250, 245, 0.68);
   border-radius: 5px;
   backdrop-filter: blur(9px);
+  display: flex;
+  column-gap: 22px;
+}
+
+.details-bg {
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
 }
 
 .anime-card {
@@ -232,26 +235,11 @@ const props = defineProps({
   position: relative;
   width: 199px;
   height: 285px;
-    display: flex;
-    justify-content: center;
-}
-
-.add-favorite-button {
-  position: absolute;
-  bottom: 10px;
-  display: flex;
-  color: #ffdbb7;
-  width: 106px;
-  height: 31px;
-  font-size: 15px;
-  background: rgba(69, 133, 136, 0.7);
-  border-radius: 4px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  column-gap: 4px;
-  backdrop-filter: blur(5px);
 }
+
+.add-favorite-button,
 .remove-favorite-button {
   position: absolute;
   bottom: 10px;
@@ -260,7 +248,8 @@ const props = defineProps({
   width: 106px;
   height: 31px;
   font-size: 15px;
-  background: rgba(214, 93, 14, 0.7);
+  background: rgba(69, 133, 136, 0.7);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.67);
   border-radius: 4px;
   display: flex;
   justify-content: center;
@@ -269,19 +258,46 @@ const props = defineProps({
   backdrop-filter: blur(5px);
 }
 
-.text-details {
+.remove-favorite-button {
+  background: rgba(214, 93, 14, 0.7);
+}
 
+.text-details {
+  margin-top: 10px;
+  width: 512px;
+  height: 222px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
+}
+
+.full-title {
+  font-size: 20px;
+}
+
+.line {
+  width: 100%;
+  border: solid #634b36 1px;
+}
+
+.description {
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .isUpdated {
+  color: #634b36;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffde23;
+  background-color: rgba(255, 204, 83, 0.8);
   border-radius: 4px;
-  width: 85px;
-  filter: drop-shadow(0px 0px 10px rgba(163, 163, 163, 0.5));
-  opacity: 90%;
+  width: 90px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.67);
+  backdrop-filter: blur(2px);
+  position: absolute;
+  right: 7px;
+  top: 7px;
 }
 
 .favorite-icon {
@@ -293,17 +309,6 @@ const props = defineProps({
 }
 .favorite-icon:hover {
   opacity: 1;
-}
-
-.fav--updated {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 185px;
-  padding: 0 7px;
-  position: absolute;
-  top: 7px;
-  color: #000;
 }
 
 .anime-title {
