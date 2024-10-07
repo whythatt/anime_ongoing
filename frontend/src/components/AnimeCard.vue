@@ -133,12 +133,13 @@ const props = defineProps({
         <div class="details">
           <div class="img-block">
             <img class="anime-pic" :src="picName" alt="" />
-            <button class="favorite-button">
+            <button class="add-favorite-button" v-if="!isFavorite">
               <svg
                 fill="#FFDBB7"
-                viewBox="-1 0 19 19"
+                viewBox="-1 1 19 19"
                 xmlns="http://www.w3.org/2000/svg"
                 class="cf-icon-svg"
+                width="18px"
               >
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -150,6 +151,29 @@ const props = defineProps({
               </svg>
               <span>Add</span>
             </button>
+            <button class="remove-favorite-button" v-else>
+              <svg
+                fill="#FFDBB7"
+                viewBox="-1 1 19 19"
+                xmlns="http://www.w3.org/2000/svg"
+                class="cf-icon-svg"
+                width="18px"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="m12.673 10.779.798 4.02c.221 1.11-.407 1.566-1.395 1.013L8.5 13.81l-3.576 2.002c-.988.553-1.616.097-1.395-1.013l.397-2.001.401-2.02-1.51-1.397-1.498-1.385c-.832-.769-.592-1.507.532-1.64l2.026-.24 2.044-.242 1.717-3.722c.474-1.028 1.25-1.028 1.724 0l1.717 3.722 2.044.242 2.026.24c1.124.133 1.364.871.533 1.64L14.184 9.38z"
+                  ></path>
+                </g>
+              </svg>
+              <span>Remove</span>
+            </button>
+          </div>
+          <div class="text-details">
+            <div class="full-title">{{ title }}</div>
+            <div class="line"></div>
+            <div class="description">{{ description }}</div>
           </div>
         </div>
       </div>
@@ -177,7 +201,7 @@ const props = defineProps({
   padding: 25px;
   background: rgba(255, 250, 245, 0.68);
   border-radius: 5px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(9px);
 }
 
 .anime-card {
@@ -208,11 +232,45 @@ const props = defineProps({
   position: relative;
   width: 199px;
   height: 285px;
+    display: flex;
+    justify-content: center;
 }
 
-.favorite-button {
+.add-favorite-button {
+  position: absolute;
+  bottom: 10px;
   display: flex;
   color: #ffdbb7;
+  width: 106px;
+  height: 31px;
+  font-size: 15px;
+  background: rgba(69, 133, 136, 0.7);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4px;
+  backdrop-filter: blur(5px);
+}
+.remove-favorite-button {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  color: #ffdbb7;
+  width: 106px;
+  height: 31px;
+  font-size: 15px;
+  background: rgba(214, 93, 14, 0.7);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4px;
+  backdrop-filter: blur(5px);
+}
+
+.text-details {
+
 }
 
 .isUpdated {
