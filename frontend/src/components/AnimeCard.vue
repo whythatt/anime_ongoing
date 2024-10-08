@@ -198,6 +198,19 @@ const props = defineProps({
   backdrop-filter: blur(9px);
   display: flex;
   column-gap: 22px;
+
+  animation-duration: 0.2s;
+  animation-name: appear-details;
+  animation-timing-function: quartic;
+}
+@keyframes appear-details {
+  0% {
+    scale: 0.94;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
 }
 
 .details-bg {
@@ -301,17 +314,6 @@ const props = defineProps({
   top: 7px;
 }
 
-.favorite-icon {
-  opacity: 90%;
-  margin-left: auto;
-  width: 30px;
-  filter: drop-shadow(0px 0px 7px rgba(163, 163, 163, 0.6));
-  transition: opacity 0.2s ease-in-out;
-}
-.favorite-icon:hover {
-  opacity: 1;
-}
-
 .anime-title {
   width: 185px;
   display: -webkit-box;
@@ -331,12 +333,24 @@ const props = defineProps({
   border-radius: 6px;
   box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.2);
   color: #634b36;
-
   display: none;
   position: absolute;
-  z-index: 10;
+  z-index: 13;
   top: 12px;
+
+  animation-duration: 0.2s;
+  animation-name: appear;
+  animation-timing-function: quartic;
 }
+@keyframes appear {
+  0% {
+    scale: 0.94;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
 .info-block .next-episode {
   margin-bottom: 13px;
 }
