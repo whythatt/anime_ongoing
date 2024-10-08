@@ -209,7 +209,6 @@ const props = defineProps({
   }
   100% {
     scale: 1;
-    opacity: 1;
   }
 }
 
@@ -218,6 +217,17 @@ const props = defineProps({
   position: fixed;
   width: 100vw;
   height: 100vh;
+  animation-duration: 0.3s;
+  animation-name: appear-details-bg;
+  animation-timing-function: quartic;
+}
+@keyframes appear-details-bg {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .anime-card {
@@ -332,7 +342,7 @@ const props = defineProps({
   background-color: #fffaf5;
   border-radius: 6px;
   box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.2);
-  color: #634b36;
+  color: #634b363;
   display: none;
   position: absolute;
   z-index: 13;

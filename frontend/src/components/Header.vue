@@ -14,7 +14,7 @@ const handleLogout = () => {
   <header class="">
     <RouterLink to="/" class="animelist-text link">animelist</RouterLink>
     <RouterLink to="/" class="logo">AO</RouterLink>
-    <RouterLink to="/favorites" class="witelist-text link">waitlist</RouterLink>
+    <RouterLink to="/favorites" class="waitlist-text link">waitlist</RouterLink>
     <div v-if="isLoggedIn" @click="handleLogout" class="login">
       <span>logout</span>
       <svg width="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,6 +49,7 @@ const handleLogout = () => {
 
 header {
   position: relative;
+  width: 100vw;
   background-color: #281c15;
   color: #ffdbb7;
   display: flex;
@@ -77,5 +78,22 @@ header .link:hover {
 .login:hover {
   opacity: 1;
   transition: all 0.2s linear;
+}
+
+@media (max-width: 545px) {
+  .login {
+    right: 7px;
+    width: 80px;
+  }
+  .login span {
+    opacity: 0;
+  }
+  .logo {
+    font-size: 35px;
+  }
+  .animelist-text,
+  .waitlist-text {
+    font-size: 15px;
+  }
 }
 </style>
