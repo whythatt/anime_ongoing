@@ -32,11 +32,18 @@ const props = defineProps({
 .title-block {
   display: flex;
   justify-content: space-between;
-  width: 1304px;
+  max-width: 1340px;
+  padding: 0 30px;
   margin: 0 auto 32px auto;
 }
 .title-block span {
   font-size: 23px;
+}
+
+@media (max-width: 1540px) {
+  .title-block {
+    max-width: 1140px;
+  }
 }
 
 input,

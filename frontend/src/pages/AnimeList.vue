@@ -174,13 +174,20 @@ watch(
 
 <style scoped>
 .anime-list {
-  width: 1304px;
+  max-width: 1340px;
   margin: 0 auto;
+  padding: 0 30px;
   display: grid;
-  grid-gap: 25px 20px;
+  grid-gap: 15px 25px;
   grid-template-columns: repeat(auto-fill, 185px);
   justify-content: space-between;
   margin-bottom: 40px;
+}
+
+@media (max-width: 1540px) {
+  .anime-list {
+    max-width: 1140px;
+  }
 }
 
 .load-more {
