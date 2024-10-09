@@ -28,10 +28,37 @@ const props = defineProps({
   isFavorite: Boolean,
   onClickFavorite: Function
 })
+
+const showInfoBlock = ref(false)
+const infoBlockPosition = ref('') // Позиция для .info-block
+
+const onMouseEnter = (event) => {
+  const cardRect = event.currentTarget.getBoundingClientRect()
+  const listRect = document.querySelector('.anime-list').getBoundingClientRect() // Получаем границы .anime-list
+  const infoBlockWidth = 294 // Ширина вашего .info-block
+
+  // Проверяем, выходит ли блок за пределы .anime-list
+  if (cardRect.right + infoBlockWidth > listRect.right) {
+    infoBlockPosition.value = `-${infoBlockWidth + 10}px` // Позиция слева
+  } else {
+    infoBlockPosition.value = `${cardRect.width + 10}px` // Позиция справа
+  }
+
+  showInfoBlock.value = true // Показываем блок
+}
+
+const onMouseLeave = () => {
+  showInfoBlock.value = false // Скрываем блок
+}
 </script>
 
 <template>
-  <div class="anime-card" @click="openDetails">
+  <div
+    class="anime-card"
+    @click="openDetails"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
+  >
     <div class="anime-img">
       <img class="anime-pic" :src="picName" alt="" />
       <div class="isUpdated" v-if="updated">NEW</div>
@@ -39,7 +66,12 @@ const props = defineProps({
     <div class="anime-title">
       {{ title }}
     </div>
-    <div class="info-block">
+    <div
+      class="info-block"
+      v-if="showInfoBlock"
+      @mouseenter="onMouseLeave"
+      :style="{ left: infoBlockPosition }"
+    >
       <!-- class .next-episode -->
       <div class="next-episode" v-if="nextEpisodeCount && releaseDateNextEp">
         Ep {{ nextEpisodeCount }} will air on {{ releaseDateNextEp }}
@@ -346,7 +378,7 @@ const props = defineProps({
   display: none;
   position: absolute;
   z-index: 13;
-  top: 12px;
+  top: 8px;
 
   animation-duration: 0.2s;
   animation-name: appear;
@@ -367,18 +399,6 @@ const props = defineProps({
 
 .anime-card:hover .info-block {
   display: block;
-}
-.anime-card:nth-child(6n + 1):hover .info-block,
-.anime-card:nth-child(6n + 2):hover .info-block,
-.anime-card:nth-child(6n + 3):hover .info-block,
-.anime-card:nth-child(6n + 4):hover .info-block {
-  margin-left: 18px;
-  left: 100%;
-}
-.anime-card:nth-child(6n + 5):hover .info-block,
-.anime-card:nth-child(6n + 6):hover .info-block {
-  margin-right: 18px;
-  right: 100%;
 }
 
 .score--mediatype--eps,
