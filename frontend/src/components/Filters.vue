@@ -32,6 +32,7 @@ const props = defineProps({
 .title-block {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   max-width: 1340px;
   padding: 0 30px;
   margin: 0 auto 32px auto;
@@ -40,10 +41,8 @@ const props = defineProps({
   font-size: 23px;
 }
 
-@media (max-width: 1540px) {
-  .title-block {
-    max-width: 1140px;
-  }
+.filters {
+  display: flex;
 }
 
 input,
@@ -60,13 +59,48 @@ select {
 }
 
 select {
-  width: 120px;
+  max-width: 120px;
   margin-right: 15px;
   padding-left: 4px;
 }
 
 input {
-  width: 210px;
+  max-width: 210px;
   padding-left: 8px;
+}
+
+@media (max-width: 1540px) {
+  .title-block {
+    max-width: 1140px;
+  }
+}
+
+@media (max-width: 1085px) {
+  .title-block {
+    margin-bottom: 20px;
+  }
+  .title-block span {
+    font-size: 21px;
+  }
+  input,
+  select {
+    height: 25px;
+  }
+}
+
+@media (max-width: 484px) {
+  .title-block span {
+    font-size: 17px;
+  }
+  input,
+  select {
+    font-size: 13px;
+  }
+  select {
+    margin-right: 5px;
+  }
+  input {
+    width: 120px;
+  }
 }
 </style>

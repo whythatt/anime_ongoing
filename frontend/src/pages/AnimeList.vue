@@ -184,12 +184,6 @@ watch(
   margin-bottom: 40px;
 }
 
-@media (max-width: 1540px) {
-  .anime-list {
-    max-width: 1140px;
-  }
-}
-
 .load-more {
   display: block;
   margin: 0 auto 30px auto;
@@ -205,5 +199,23 @@ watch(
   margin: 0 auto 30px auto;
   font-size: 24px;
   width: fit-content;
+}
+
+@media (max-width: 1540px) {
+  .anime-list {
+    max-width: 1140px;
+  }
+}
+
+@media (max-width: 1085px) {
+  .anime-list {
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+  }
+}
+
+@media (max-width: 484px) {
+  .anime-img {
+    height: 100%;
+  }
 }
 </style>

@@ -79,7 +79,7 @@
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/seirei-gensouki-2-4cd2251449.jpg",
         "pic_name": "/anime_pics/Seirei_Gensouki_2.jpg",
         "next_episode_count": "2",
-        "total_episodes": null,
+        "total_episodes": 12,
         "release_date_next_ep": "Oct 14, 2024",
         "mediatype": "TV",
         "season": "Fall 2024",
@@ -88,21 +88,6 @@
         "episode_duration": "24m",
         "score": null,
         "description": "The second season of"
-    },
-    {
-        "title": "Hitoribocchi no Isekai Kouryaku",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/hitoribocchi-no-isekai-kouryaku-82177ed6d1.jpg",
-        "pic_name": "/anime_pics/Hitoribocchi_no_Isekai_Kouryaku.jpg",
-        "next_episode_count": "3",
-        "total_episodes": 12,
-        "release_date_next_ep": "Oct 10, 2024",
-        "mediatype": "TV",
-        "season": "Fall 2024",
-        "release_date": "Sep 26, 2024",
-        "status": "Ongoing",
-        "episode_duration": "24m",
-        "score": null,
-        "description": "When sarcastic loner Haruka gets transported with his class to another world, he's not wild about adventuring, but he wouldn't mind having some cool powers. Unfortunately, he's last in line when the magic cheat skills get divvied up, so by the time it's Haruka's turn, there are no good choices left. Now Haruka will have to take on this fantasy world the hard way\u2013on his own, with a hodgepodge of bizarre skills! When infighting and chaos break out among his classmates, can this loner come to the rescue?"
     },
     {
         "title": "Dandadan",
@@ -118,6 +103,21 @@
         "episode_duration": "24m",
         "score": null,
         "description": "This is a story about Momo, a high school girl who comes from a family of spirit mediums, and her classmate Okarun, an occult fanatic. After Momo rescues Okarun from being bullied, they begin talking. However, an argument ensues between them since Momo believes in ghosts but denies aliens exist, and Okarun believes in aliens but denies ghosts exist."
+    },
+    {
+        "title": "Hitoribocchi no Isekai Kouryaku",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/hitoribocchi-no-isekai-kouryaku-82177ed6d1.jpg",
+        "pic_name": "/anime_pics/Hitoribocchi_no_Isekai_Kouryaku.jpg",
+        "next_episode_count": "3",
+        "total_episodes": 12,
+        "release_date_next_ep": "Oct 10, 2024",
+        "mediatype": "TV",
+        "season": "Fall 2024",
+        "release_date": "Sep 26, 2024",
+        "status": "Ongoing",
+        "episode_duration": "24m",
+        "score": null,
+        "description": "When sarcastic loner Haruka gets transported with his class to another world, he's not wild about adventuring, but he wouldn't mind having some cool powers. Unfortunately, he's last in line when the magic cheat skills get divvied up, so by the time it's Haruka's turn, there are no good choices left. Now Haruka will have to take on this fantasy world the hard way\u2013on his own, with a hodgepodge of bizarre skills! When infighting and chaos break out among his classmates, can this loner come to the rescue?"
     },
     {
         "title": "Blue Lock VS. U-20 JAPAN",
@@ -378,9 +378,9 @@
         "title": "Amagami-san Chi no Enmusubi",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/amagami-san-chi-no-enmusubi-72d6512308.jpg",
         "pic_name": "/anime_pics/Amagami-san_Chi_no_Enmusubi.jpg",
-        "next_episode_count": "2",
+        "next_episode_count": "3",
         "total_episodes": 24,
-        "release_date_next_ep": "Oct 08, 2024",
+        "release_date_next_ep": "Oct 15, 2024",
         "mediatype": "TV",
         "season": "Fall 2024",
         "release_date": "Oct 01, 2024",
@@ -388,21 +388,6 @@
         "episode_duration": "24m",
         "score": null,
         "description": "Uryuu Kamihate is a high school student striving to enter Kyoto University\u2019s medical school. After being raised at an orphanage, Uryuu is taken in by the chief priest at Amagami Shrine, where he begins to live as a freeloader\u2014and to cohabit with Yae, Yuna, and Asahi, the three beautiful shrine maiden sisters! What\u2019s more, the condition he must meet in order to live at the shrine for free is to marry into the family and inherit the shrine! How will Uryuu overcome his marriage meetings with the three sisters as well as the many challenges that Amagami Shrine faces? So begins a miraculous rom-com about living under the same roof with three shrine maidens!"
-    },
-    {
-        "title": "Isekai de Cheat Skill wo Te ni Shita Ore wa, Genjitsu Sekai wo mo Musou Suru: Level Up wa Jinsei wo Kaeta (Shin Anime)",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/isekai-de-cheat-skill-wo-te-ni-shita-ore-wa-genjitsu-sekai-wo-mo-musou-suru-level-up-wa-jinsei-wo-kaeta-shin-anime-63ad62617e.jpg",
-        "pic_name": "/anime_pics/Isekai_de_Cheat_Skill_wo_Te_ni_Shita_Ore_wa,_Genjitsu_Sekai_wo_mo_Musou_Suru_Level_Up_wa_Jinsei_wo_Kaeta_(Shin_Anime).jpg",
-        "next_episode_count": null,
-        "total_episodes": null,
-        "release_date_next_ep": null,
-        "mediatype": "TV",
-        "season": null,
-        "release_date": null,
-        "status": "Upcoming",
-        "episode_duration": null,
-        "score": null,
-        "description": null
     },
     {
         "title": "Ao no Exorcist: Yuki no Hate-hen",
@@ -418,6 +403,21 @@
         "episode_duration": "24m",
         "score": null,
         "description": "Sequel to"
+    },
+    {
+        "title": "Isekai de Cheat Skill wo Te ni Shita Ore wa, Genjitsu Sekai wo mo Musou Suru: Level Up wa Jinsei wo Kaeta (Shin Anime)",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/isekai-de-cheat-skill-wo-te-ni-shita-ore-wa-genjitsu-sekai-wo-mo-musou-suru-level-up-wa-jinsei-wo-kaeta-shin-anime-63ad62617e.jpg",
+        "pic_name": "/anime_pics/Isekai_de_Cheat_Skill_wo_Te_ni_Shita_Ore_wa,_Genjitsu_Sekai_wo_mo_Musou_Suru_Level_Up_wa_Jinsei_wo_Kaeta_(Shin_Anime).jpg",
+        "next_episode_count": null,
+        "total_episodes": null,
+        "release_date_next_ep": null,
+        "mediatype": "TV",
+        "season": null,
+        "release_date": null,
+        "status": "Upcoming",
+        "episode_duration": null,
+        "score": null,
+        "description": null
     },
     {
         "title": "Otomege Sekai wa Mob ni Kibishii Sekai desu 2nd Season",
@@ -633,9 +633,9 @@
         "title": "Tasuuketsu",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/tasuuketsu-c33ac8d2c5.jpg",
         "pic_name": "/anime_pics/Tasuuketsu.jpg",
-        "next_episode_count": "13",
+        "next_episode_count": "14",
         "total_episodes": null,
-        "release_date_next_ep": "Oct 08, 2024",
+        "release_date_next_ep": "Oct 15, 2024",
         "mediatype": "TV",
         "season": "Summer 2024",
         "release_date": "Jul 02, 2024",
@@ -663,9 +663,9 @@
         "title": "Rekishi ni Nokoru Akujo ni Naruzo",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/rekishi-ni-nokoru-akujo-ni-naru-zo-9745ead287.jpg",
         "pic_name": "/anime_pics/Rekishi_ni_Nokoru_Akujo_ni_Naruzo.jpg",
-        "next_episode_count": "2",
+        "next_episode_count": "3",
         "total_episodes": 13,
-        "release_date_next_ep": "Oct 08, 2024",
+        "release_date_next_ep": "Oct 15, 2024",
         "mediatype": "TV",
         "season": "Fall 2024",
         "release_date": "Oct 01, 2024",
@@ -765,6 +765,21 @@
         "description": "The fourth season of"
     },
     {
+        "title": "Dragon Ball DAIMA",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/dragon-ball-daima-bc212f7cd2.jpg",
+        "pic_name": "/anime_pics/Dragon_Ball_DAIMA.jpg",
+        "next_episode_count": "1",
+        "total_episodes": null,
+        "release_date_next_ep": "Oct 11, 2024",
+        "mediatype": "TV",
+        "season": "Fall 2024",
+        "release_date": "Oct 11, 2024",
+        "status": "Upcoming",
+        "episode_duration": "24m",
+        "score": null,
+        "description": "All-new series project for"
+    },
+    {
         "title": "Maou 2099",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/maou-2099-cd3610de0a.jpg",
         "pic_name": "/anime_pics/Maou_2099.jpg",
@@ -810,21 +825,6 @@
         "description": "It's 1863, the twilight of the shogunate, and Japan is on the cusp of monumental change. The streets of the nation's capital are soaked in blood as political upheaval and rising tensions between masterless, wandering ronin and government samurai set the stage for one of the most turbulent times in Japan's history. Young orphan Nio is no stranger to the harsh realities of the world, and yet he can't help but cling to his burning passion for justice and desire to change the world for the better."
     },
     {
-        "title": "Dragon Ball DAIMA",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/dragon-ball-daima-bc212f7cd2.jpg",
-        "pic_name": "/anime_pics/Dragon_Ball_DAIMA.jpg",
-        "next_episode_count": "1",
-        "total_episodes": null,
-        "release_date_next_ep": "Oct 11, 2024",
-        "mediatype": "TV",
-        "season": "Fall 2024",
-        "release_date": "Oct 11, 2024",
-        "status": "Upcoming",
-        "episode_duration": "24m",
-        "score": null,
-        "description": "All-new series project for"
-    },
-    {
         "title": "Botsuraku Yotei no Kizoku dakedo, Hima Datta kara Mahou wo Kiwamete mita",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/botsuraku-yotei-no-kizoku-dakedo-hima-datta-kara-mahou-wo-kiwametemita-21dc9085d5.jpg",
         "pic_name": "/anime_pics/Botsuraku_Yotei_no_Kizoku_dakedo,_Hima_Datta_kara_Mahou_wo_Kiwamete_mita.jpg",
@@ -840,19 +840,19 @@
         "description": "What's a guy to do when his life suddenly changes while innocently enjoying a nice, cold drink after work? And I mean really changes. This middle-aged commoner now finds himself in the body of Liam Hamilton, the young son of a noble house teetering on the brink of collapse. Between his fervidly desperate father and his utterly apathetic brothers, the only bright side to his new situation is that Liam can finally try learning magic like he's always wanted. Little does he know his hobby of choice may be about to turn his life upside-down yet again! Will Liam be able to master the craft of magic? And will it be enough to save him from the shadow looming over his family...?"
     },
     {
-        "title": "Sengoku Youko: Senma Konton-hen",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/sengoku-youko-senma-konton-hen-61406349dd.jpg",
-        "pic_name": "/anime_pics/Sengoku_Youko_Senma_Konton-hen.jpg",
-        "next_episode_count": "11",
-        "total_episodes": 22,
-        "release_date_next_ep": "Oct 09, 2024",
+        "title": "Chi.: Chikyuu no Undou ni Tsuite",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/chi-chikyuu-no-undou-ni-tsuite-bb40a0380f.jpg",
+        "pic_name": "/anime_pics/Chi_Chikyuu_no_Undou_ni_Tsuite.jpg",
+        "next_episode_count": "3",
+        "total_episodes": 25,
+        "release_date_next_ep": "Oct 12, 2024",
         "mediatype": "TV",
-        "season": "Summer 2024",
-        "release_date": "Jul 17, 2024",
+        "season": "Fall 2024",
+        "release_date": "Oct 05, 2024",
         "status": "Ongoing",
         "episode_duration": "24m",
         "score": null,
-        "description": "The second and third cours of"
+        "description": "The setting is 15th-century Poland. It was a time when heretical ideas lead those to who possessed such a mindset to being burned at the stake for their beliefs."
     },
     {
         "title": "Maou-sama, Retry! R",
@@ -870,19 +870,19 @@
         "description": "The Demon Lord continues his adventure in this re-vamped series! After encountering the mysterious entity in the lowest level of the Bastille Dungeon, he sets out for Hellion Territory, where Grand Devils vie for domination of the realm. With the addition of a new advisor\u2014the (seemingly) hopeless optimist Akane\u2014the Demon Lord\u2019s army grows even more colorful, and their hijinks even wackier."
     },
     {
-        "title": "Chi.: Chikyuu no Undou ni Tsuite",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/chi-chikyuu-no-undou-ni-tsuite-bb40a0380f.jpg",
-        "pic_name": "/anime_pics/Chi_Chikyuu_no_Undou_ni_Tsuite.jpg",
-        "next_episode_count": "3",
-        "total_episodes": 25,
-        "release_date_next_ep": "Oct 12, 2024",
+        "title": "Sengoku Youko: Senma Konton-hen",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/sengoku-youko-senma-konton-hen-61406349dd.jpg",
+        "pic_name": "/anime_pics/Sengoku_Youko_Senma_Konton-hen.jpg",
+        "next_episode_count": "11",
+        "total_episodes": 22,
+        "release_date_next_ep": "Oct 09, 2024",
         "mediatype": "TV",
-        "season": "Fall 2024",
-        "release_date": "Oct 05, 2024",
+        "season": "Summer 2024",
+        "release_date": "Jul 17, 2024",
         "status": "Ongoing",
         "episode_duration": "24m",
         "score": null,
-        "description": "The setting is 15th-century Poland. It was a time when heretical ideas lead those to who possessed such a mindset to being burned at the stake for their beliefs."
+        "description": "The second and third cours of"
     },
     {
         "title": "Sword Art Online (Original Movie)",
@@ -1005,21 +1005,6 @@
         "description": "An anime adaption of the game with the same name."
     },
     {
-        "title": "Kimi wa Meido-sama.",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/kimi-wa-meido-sama-ccca1ef3f2.jpg",
-        "pic_name": "/anime_pics/Kimi_wa_Meido-sama.jpg",
-        "next_episode_count": "2",
-        "total_episodes": 12,
-        "release_date_next_ep": "Oct 12, 2024",
-        "mediatype": "TV",
-        "season": "Fall 2024",
-        "release_date": "Oct 05, 2024",
-        "status": "Ongoing",
-        "episode_duration": "24m",
-        "score": null,
-        "description": "This is the story of a maid who is all alone in the world, but who finally finds a family."
-    },
-    {
         "title": "Acro Trip",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/acro-trip-675342362e.jpg",
         "pic_name": "/anime_pics/Acro_Trip.jpg",
@@ -1033,6 +1018,21 @@
         "episode_duration": "24m",
         "score": null,
         "description": "Chizuko is a normal otaku girl in Niigata Prefecture. She\u2019s obsessed with Berry Blossom, a magical heroine who protects the city. But the battles with her inept nemesis, Chroma, have become so lackluster that they\u2019re not even worth watching. Chizuko wants to see Berry\u2019s full power, a desire that quickly leads this seemingly timid girl down a path of evil."
+    },
+    {
+        "title": "Kimi wa Meido-sama.",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/kimi-wa-meido-sama-ccca1ef3f2.jpg",
+        "pic_name": "/anime_pics/Kimi_wa_Meido-sama.jpg",
+        "next_episode_count": "2",
+        "total_episodes": 12,
+        "release_date_next_ep": "Oct 12, 2024",
+        "mediatype": "TV",
+        "season": "Fall 2024",
+        "release_date": "Oct 05, 2024",
+        "status": "Ongoing",
+        "episode_duration": "24m",
+        "score": null,
+        "description": "This is the story of a maid who is all alone in the world, but who finally finds a family."
     },
     {
         "title": "Goukon ni Ittara Onna ga Inakatta Hanashi",
@@ -1095,6 +1095,21 @@
         "description": "In the Edo period, there was a shrine maiden called \"Itsukihime\" in the mountain village of Kadono. Jinta, a young man who acts as the shrine maiden's guardian despite being a stranger, encounters a mysterious demon who speaks of the far future in the forest where he went to defeat it. From Edo to the Heisei era, this huge Japanese fantasy series follows a demon man who travels through time while continuously questioning the meaning of wielding a sword."
     },
     {
+        "title": "Haigakura",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/haigakura-635f1e089e.jpg",
+        "pic_name": "/anime_pics/Haigakura.jpg",
+        "next_episode_count": "2",
+        "total_episodes": 13,
+        "release_date_next_ep": "Oct 14, 2024",
+        "mediatype": "TV",
+        "season": "Fall 2024",
+        "release_date": "Oct 07, 2024",
+        "status": "Ongoing",
+        "episode_duration": "24m",
+        "score": null,
+        "description": "Nozomu wants to be a writer, but for now she's just trying to find the right story. Walking home from school one day she bumps into some guys, and even though it's an accident, they hassle her until she is saved by a mysterious man. His name is Ichiyou, and he is searching for Gods."
+    },
+    {
         "title": "Mushoku Tensei III: Isekai Ittara Honki Dasu",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/mushoku-tensei-iii-isekai-ittara-honki-dasu-551d08c6fa.jpg",
         "pic_name": "/anime_pics/Mushoku_Tensei_III_Isekai_Ittara_Honki_Dasu.jpg",
@@ -1125,21 +1140,6 @@
         "description": "\"Unknown\" is a mysterious enemy that suddenly appeared a long time ago. As a countermeasure, the \"Evolutionary Railway Development Agency\" (ERDA) has developed the \"Shinkalion\" robot that transform into bullet trains, to prepare for the threat."
     },
     {
-        "title": "Haigakura",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/haigakura-635f1e089e.jpg",
-        "pic_name": "/anime_pics/Haigakura.jpg",
-        "next_episode_count": "2",
-        "total_episodes": 13,
-        "release_date_next_ep": "Oct 14, 2024",
-        "mediatype": "TV",
-        "season": "Fall 2024",
-        "release_date": "Oct 07, 2024",
-        "status": "Ongoing",
-        "episode_duration": "24m",
-        "score": null,
-        "description": "Nozomu wants to be a writer, but for now she's just trying to find the right story. Walking home from school one day she bumps into some guys, and even though it's an accident, they hassle her until she is saved by a mysterious man. His name is Ichiyou, and he is searching for Gods."
-    },
-    {
         "title": "Danjo no Yuujou wa Seiritsu suru? (Iya, Shinai!!)",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/danjo-no-yuujou-wa-seiritsu-suru-iya-shinai-6f1d9b4689.jpg",
         "pic_name": "/anime_pics/Danjo_no_Yuujou_wa_Seiritsu_suru_(Iya,_Shinai).jpg",
@@ -1155,21 +1155,6 @@
         "description": "At a rural junior high school, a boy and a girl vowed eternal friendship, and two years passed smoothly in their relationship......!"
     },
     {
-        "title": "Doraemon (2005)",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/doraemon-2005-371cbec0f6.jpg",
-        "pic_name": "/anime_pics/Doraemon_(2005).jpg",
-        "next_episode_count": "741",
-        "total_episodes": null,
-        "release_date_next_ep": "Oct 12, 2024",
-        "mediatype": "TV",
-        "season": "Spring 2005",
-        "release_date": "Apr 15, 2005",
-        "status": "Ongoing",
-        "episode_duration": "25m",
-        "score": null,
-        "description": ") is the most recent anime series based on Fujiko Fujio's manga of the same name."
-    },
-    {
         "title": "Mahou Shoujo Madoka\u2606Magica: Walpurgis no Kaiten",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/mahou-shoujo-madoka-magica-walpurgis-no-kaiten-57f88692e1.jpg",
         "pic_name": "/anime_pics/Mahou_Shoujo_Madoka\u2606Magica_Walpurgis_no_Kaiten.jpg",
@@ -1183,6 +1168,21 @@
         "episode_duration": null,
         "score": null,
         "description": "The 10th anniversary online event for the"
+    },
+    {
+        "title": "Doraemon (2005)",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/doraemon-2005-371cbec0f6.jpg",
+        "pic_name": "/anime_pics/Doraemon_(2005).jpg",
+        "next_episode_count": "741",
+        "total_episodes": null,
+        "release_date_next_ep": "Oct 12, 2024",
+        "mediatype": "TV",
+        "season": "Spring 2005",
+        "release_date": "Apr 15, 2005",
+        "status": "Ongoing",
+        "episode_duration": "25m",
+        "score": null,
+        "description": ") is the most recent anime series based on Fujiko Fujio's manga of the same name."
     },
     {
         "title": "Yofukashi no Uta 2nd Season",
@@ -1290,21 +1290,6 @@
         "description": "After inheriting the company from their parents, siblings Yuuhi and Yuamu Oudou have started to work at Ultraterrestrial Trouble Solutions, an organization that hunts aliens. Although they have never encountered aliens before, Yuuhi is desperate to meet one as he believes that an alien has stolen his important item called the \"Earthdamar.\""
     },
     {
-        "title": "Kekkon Suru tte, Hontou desu ka: 365 Days To The Wedding",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/kekkon-suru-tte-hontou-desu-ka-9610f563b7.jpg",
-        "pic_name": "/anime_pics/Kekkon_Suru_tte,_Hontou_desu_ka_365_Days_To_The_Wedding.jpg",
-        "next_episode_count": "2",
-        "total_episodes": null,
-        "release_date_next_ep": "Oct 10, 2024",
-        "mediatype": "TV",
-        "season": "Fall 2024",
-        "release_date": "Oct 03, 2024",
-        "status": "Ongoing",
-        "episode_duration": "24m",
-        "score": null,
-        "description": "Takuya and Rika work at the same travel agency in Tokyo and are both happily introverted and single. But their company is opening a new branch in Alaska next year, and employees without a spouse will be recruited to work there. Desperate to avoid the move, and though they\u2019ve hardly spoken before, they decide to fake an engagement. Can these quiet coworkers become a convincing couple?"
-    },
-    {
         "title": "Class no Daikirai na Joshi to Kekkon suru Koto ni Natta.",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/class-no-daikirai-na-joshi-to-kekkon-suru-koto-ni-natta-11f0dc7de8.jpg",
         "pic_name": "/anime_pics/Class_no_Daikirai_na_Joshi_to_Kekkon_suru_Koto_ni_Natta.jpg",
@@ -1318,6 +1303,21 @@
         "episode_duration": null,
         "score": null,
         "description": "High school student Saito Houjo has married his classmate, Akane Sakuramori, the girl who is his biggest rival at school. The two can't seem to get along with each other, but their heart-pounding newlywed life is about to begin!"
+    },
+    {
+        "title": "Kekkon Suru tte, Hontou desu ka: 365 Days To The Wedding",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/kekkon-suru-tte-hontou-desu-ka-9610f563b7.jpg",
+        "pic_name": "/anime_pics/Kekkon_Suru_tte,_Hontou_desu_ka_365_Days_To_The_Wedding.jpg",
+        "next_episode_count": "2",
+        "total_episodes": null,
+        "release_date_next_ep": "Oct 10, 2024",
+        "mediatype": "TV",
+        "season": "Fall 2024",
+        "release_date": "Oct 03, 2024",
+        "status": "Ongoing",
+        "episode_duration": "24m",
+        "score": null,
+        "description": "Takuya and Rika work at the same travel agency in Tokyo and are both happily introverted and single. But their company is opening a new branch in Alaska next year, and employees without a spouse will be recruited to work there. Desperate to avoid the move, and though they\u2019ve hardly spoken before, they decide to fake an engagement. Can these quiet coworkers become a convincing couple?"
     },
     {
         "title": "Mato Seihei no Slave 2nd Season",
@@ -1689,7 +1689,7 @@
         "mediatype": "TV",
         "season": "Fall 2024",
         "release_date": "Oct 09, 2024",
-        "status": "Upcoming",
+        "status": "Ongoing",
         "episode_duration": "24m",
         "score": null,
         "description": "Jill breaks out of prison the night before she\u2019s set to be executed by her fianc\u00e9, Crown Prince Gerald. She\u2019s struck by an arrow while escaping, but instead of dying, she\u2019s transported six years into the past\u2014to the night she and Gerald met. Desperate to alter fate, she instead proposes to the first man she sees, Hadis Teos Rave, her enemy in the future. This is her last chance to get it right!"
@@ -2085,6 +2085,21 @@
         "description": "The second season of"
     },
     {
+        "title": "Ao no Exorcist: Yosuga-hen",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/ao-no-exorcist-yosuga-hen-39e8e1220f.jpg",
+        "pic_name": "/anime_pics/Ao_no_Exorcist_Yosuga-hen.jpg",
+        "next_episode_count": null,
+        "total_episodes": null,
+        "release_date_next_ep": null,
+        "mediatype": "TV",
+        "season": "Winter 2025",
+        "release_date": "Jan 2025",
+        "status": "Upcoming",
+        "episode_duration": null,
+        "score": null,
+        "description": null
+    },
+    {
         "title": "Nihon e Youkoso Elf-san.",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/nihon-e-youkoso-elf-san-98893fc2da.jpg",
         "pic_name": "/anime_pics/Nihon_e_Youkoso_Elf-san.jpg",
@@ -2128,21 +2143,6 @@
         "episode_duration": null,
         "score": null,
         "description": "In a world where everyone takes wonders like magic spells and dragons for granted, Coco is a girl with a simple dream: she wants to be a witch. But everybody knows magicians are born, not made, and Coco was not born with a gift for magic. Resigned to her un-magical life, Coco is about to give up on her dream to become a witch \u2026 until the day she meets Qifrey, a mysterious, traveling magician. After secretly seeing Qifrey perform magic in a way she\u2019s never seen before, Coco soon learns what everybody \u201cknows\u201d might not be the truth, and discovers that her magical dream may not be as far away as it may seem..."
-    },
-    {
-        "title": "Ao no Exorcist: Yosuga-hen",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/ao-no-exorcist-yosuga-hen-39e8e1220f.jpg",
-        "pic_name": "/anime_pics/Ao_no_Exorcist_Yosuga-hen.jpg",
-        "next_episode_count": null,
-        "total_episodes": null,
-        "release_date_next_ep": null,
-        "mediatype": "TV",
-        "season": "Winter 2025",
-        "release_date": "Jan 2025",
-        "status": "Upcoming",
-        "episode_duration": null,
-        "score": null,
-        "description": null
     },
     {
         "title": "Aharen-san wa Hakarenai 2nd Season",
@@ -2223,9 +2223,9 @@
         "title": "Youkai Gakkou no Sensei Hajimemashita!",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/youkai-gakkou-no-sensei-hajimemashita-12115e4f36.jpg",
         "pic_name": "/anime_pics/Youkai_Gakkou_no_Sensei_Hajimemashita.jpg",
-        "next_episode_count": "1",
-        "total_episodes": null,
-        "release_date_next_ep": "Oct 08, 2024",
+        "next_episode_count": "2",
+        "total_episodes": 24,
+        "release_date_next_ep": "Oct 15, 2024",
         "mediatype": "TV",
         "season": "Fall 2024",
         "release_date": "Oct 08, 2024",
@@ -2505,21 +2505,6 @@
         "description": "The story begins with a 450-year-old vampire named Ranmaru, working part-time at an old public bath. He desires the blood of an 18-year-old virgin, and so watches over the growth of 15-year-old Rihito, the son of the bathhouse owners."
     },
     {
-        "title": "Eisen Fl\u00fcgel",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/eisen-flugel-d83699b1ae.jpg",
-        "pic_name": "/anime_pics/Eisen_Fl\u00fcgel.jpg",
-        "next_episode_count": null,
-        "total_episodes": 1,
-        "release_date_next_ep": null,
-        "mediatype": "Movie",
-        "season": null,
-        "release_date": null,
-        "status": "Upcoming",
-        "episode_duration": null,
-        "score": null,
-        "description": "In a world where dragons rule the skies, mankind still dreams about taking to the skies and dominating the heavens in their place. Even during wartime, the passionate young pilot Karl Schuniz pursues his dreams, taking up his steel wings\u2014the revolutionary new aircraft, the Blitz Vogel\u2014to challenge the Kaiser Drache, the fastest dragon capable of supersonic flight."
-    },
-    {
         "title": "Haite Kudasai, Takamine-san",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/haite-kudasai-takamine-san-c1c80890df.jpg",
         "pic_name": "/anime_pics/Haite_Kudasai,_Takamine-san.jpg",
@@ -2535,19 +2520,19 @@
         "description": "Takane Takamine is the goddess of her high school. With perfect grades, athletic prowess, and unrivaled beauty, this student council president is the apple of everyone's eye-including Koushi Shirota, a below-average student with no friends or social prospects whatsoever. But he'll soon find out the secret behind Takamine's unbelievable success-her underwear! When she strips, she can undo any of her past actions, and now that Koushi knows, Takamine won't let him off so easy..."
     },
     {
-        "title": "Hana wa Saku, Shura no Gotoku",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/hana-wa-saku-shura-no-gotoku-0a833fd39e.jpg",
-        "pic_name": "/anime_pics/Hana_wa_Saku,_Shura_no_Gotoku.jpg",
+        "title": "Eisen Fl\u00fcgel",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/eisen-flugel-d83699b1ae.jpg",
+        "pic_name": "/anime_pics/Eisen_Fl\u00fcgel.jpg",
         "next_episode_count": null,
-        "total_episodes": null,
+        "total_episodes": 1,
         "release_date_next_ep": null,
-        "mediatype": "TV",
-        "season": "Winter 2025",
-        "release_date": "Jan 2025",
+        "mediatype": "Movie",
+        "season": null,
+        "release_date": null,
         "status": "Upcoming",
         "episode_duration": null,
         "score": null,
-        "description": "is a coming-of-age tale set on Tonaru Island, a small island with a population of 600 people. In this setting, Hana Haruyama is a first year high school student who loves to recite works of literature aloud. One day, she is invited by second year student Mizuki Usurai to join the school's broadcasting club, because Mizuki believes that Hana's \u201creading\u201d has the power to attract people's attention."
+        "description": "In a world where dragons rule the skies, mankind still dreams about taking to the skies and dominating the heavens in their place. Even during wartime, the passionate young pilot Karl Schuniz pursues his dreams, taking up his steel wings\u2014the revolutionary new aircraft, the Blitz Vogel\u2014to challenge the Kaiser Drache, the fastest dragon capable of supersonic flight."
     },
     {
         "title": "Bye Bye, Earth 2nd Season",
@@ -2565,21 +2550,6 @@
         "description": "The second season of"
     },
     {
-        "title": "Girls' Work",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/girls-work-7a3da3a10d.jpg",
-        "pic_name": "/anime_pics/Girls'_Work.jpg",
-        "next_episode_count": null,
-        "total_episodes": null,
-        "release_date_next_ep": null,
-        "mediatype": "TV",
-        "season": null,
-        "release_date": null,
-        "status": "Upcoming",
-        "episode_duration": null,
-        "score": null,
-        "description": null
-    },
-    {
         "title": "Nora to Oujo to Noraneko Heart 2",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/nora-to-oujo-to-noraneko-heart-2-03bb871310.jpg",
         "pic_name": "/anime_pics/Nora_to_Oujo_to_Noraneko_Heart_2.jpg",
@@ -2593,6 +2563,36 @@
         "episode_duration": null,
         "score": null,
         "description": "Sequel to Nora to"
+    },
+    {
+        "title": "Hana wa Saku, Shura no Gotoku",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/hana-wa-saku-shura-no-gotoku-0a833fd39e.jpg",
+        "pic_name": "/anime_pics/Hana_wa_Saku,_Shura_no_Gotoku.jpg",
+        "next_episode_count": null,
+        "total_episodes": null,
+        "release_date_next_ep": null,
+        "mediatype": "TV",
+        "season": "Winter 2025",
+        "release_date": "Jan 2025",
+        "status": "Upcoming",
+        "episode_duration": null,
+        "score": null,
+        "description": "is a coming-of-age tale set on Tonaru Island, a small island with a population of 600 people. In this setting, Hana Haruyama is a first year high school student who loves to recite works of literature aloud. One day, she is invited by second year student Mizuki Usurai to join the school's broadcasting club, because Mizuki believes that Hana's \u201creading\u201d has the power to attract people's attention."
+    },
+    {
+        "title": "Girls' Work",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/girls-work-7a3da3a10d.jpg",
+        "pic_name": "/anime_pics/Girls'_Work.jpg",
+        "next_episode_count": null,
+        "total_episodes": null,
+        "release_date_next_ep": null,
+        "mediatype": "TV",
+        "season": null,
+        "release_date": null,
+        "status": "Upcoming",
+        "episode_duration": null,
+        "score": null,
+        "description": null
     },
     {
         "title": "Trillion Game",
@@ -2625,21 +2625,6 @@
         "description": "On her seventeenth birthday, the apprentice witch Meg learns that she only has one year left to live. Her teacher, the long-lived witch Faust, explains that the only way to undo the death curse is to collect tears of joy and grow the seed of life. To find them, Meg will have to leave the sheltered life she's always known and head out into the world. There will be meetings, partings, and friendships aplenty, and of course many tears. Meg will learn the most important lessons for a witch are bright, sweet, and somewhat heart wrenching."
     },
     {
-        "title": "Love Live! Superstar!! 3",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/love-live-superstar-3-03152f3950.jpg",
-        "pic_name": "/anime_pics/Love_Live_Superstar_3.jpg",
-        "next_episode_count": "2",
-        "total_episodes": null,
-        "release_date_next_ep": "Oct 13, 2024",
-        "mediatype": "TV",
-        "season": "Fall 2024",
-        "release_date": "Oct 06, 2024",
-        "status": "Ongoing",
-        "episode_duration": "24m",
-        "score": null,
-        "description": "The third season of"
-    },
-    {
         "title": "Tensei Akujo no Kuro Rekish",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/tensei-akujo-no-kuro-rekishi-9b69e51475.jpg",
         "pic_name": "/anime_pics/Tensei_Akujo_no_Kuro_Rekish.jpg",
@@ -2653,6 +2638,21 @@
         "episode_duration": null,
         "score": null,
         "description": "Konoha Satou has a dark history. After all, she spent her teen years writing self-indulgent fantasy romance fics-like her Dark History. But since she's become its most despicable villainess, remembering every last detail is now a matter of life-and-death. Having avoided the first couple of death flags, Satou's suddenly left in the dark when a mysterious stranger returns from the Lily Kingdom-a character she doesn't recall writing in the original script. Although Yomi claims to be her ally, can Satou really trust a character she knows nothing about in such a dangerous world?"
+    },
+    {
+        "title": "Love Live! Superstar!! 3",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/love-live-superstar-3-03152f3950.jpg",
+        "pic_name": "/anime_pics/Love_Live_Superstar_3.jpg",
+        "next_episode_count": "2",
+        "total_episodes": 12,
+        "release_date_next_ep": "Oct 13, 2024",
+        "mediatype": "TV",
+        "season": "Fall 2024",
+        "release_date": "Oct 06, 2024",
+        "status": "Ongoing",
+        "episode_duration": "24m",
+        "score": null,
+        "description": "The third season of"
     },
     {
         "title": "Ao no Orchestra 2nd Season",
@@ -2760,6 +2760,21 @@
         "description": "The second season of"
     },
     {
+        "title": "Douse, Koishite Shimaunda.",
+        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/douse-koishite-shimaunda-4decfd6c46.jpg",
+        "pic_name": "/anime_pics/Douse,_Koishite_Shimaunda.jpg",
+        "next_episode_count": null,
+        "total_episodes": null,
+        "release_date_next_ep": null,
+        "mediatype": "TV",
+        "season": "Winter 2025",
+        "release_date": "Jan 2025",
+        "status": "Upcoming",
+        "episode_duration": null,
+        "score": null,
+        "description": "It's July 1, 2020. Mizuha, a high school second-year, is having the worst seventeenth birthday ever. She's missing her chance to get close to the older student she admires, and her parents didn't even remember that it's her birthday. Worst of all, there's a new and unknown infectious disease making the rounds, so all her club tournaments and school trips have been canceled."
+    },
+    {
         "title": "Medalist",
         "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/medalist-781604cc8d.jpg",
         "pic_name": "/anime_pics/Medalist.jpg",
@@ -2803,21 +2818,6 @@
         "episode_duration": null,
         "score": null,
         "description": "Takuto Ira succumbed to illness at a young age and ended up reincarnating in a world that resembles the fantasy turn-based strategy game Eternal Nations. Not only did he reincarnate into his favorite game, but as the god who commands the evil civilization Mynoghra. With Mynoghra's beautiful hero unit, Sludge Witch Atou by his side, not even legendarily difficult race traits will stand in the way of restarting their civilization!"
-    },
-    {
-        "title": "Douse, Koishite Shimaunda.",
-        "image_url": "https://img.animeschedule.net/production/assets/public/img/anime/jpg/default/douse-koishite-shimaunda-4decfd6c46.jpg",
-        "pic_name": "/anime_pics/Douse,_Koishite_Shimaunda.jpg",
-        "next_episode_count": null,
-        "total_episodes": null,
-        "release_date_next_ep": null,
-        "mediatype": "TV",
-        "season": "Winter 2025",
-        "release_date": "Jan 2025",
-        "status": "Upcoming",
-        "episode_duration": null,
-        "score": null,
-        "description": "It's July 1, 2020. Mizuha, a high school second-year, is having the worst seventeenth birthday ever. She's missing her chance to get close to the older student she admires, and her parents didn't even remember that it's her birthday. Worst of all, there's a new and unknown infectious disease making the rounds, so all her club tournaments and school trips have been canceled."
     },
     {
         "title": "Kisaki Kyouiku kara Nigetai Watashi",
