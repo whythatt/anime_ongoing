@@ -212,10 +212,4 @@ watch(
     grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
   }
 }
-
-@media (max-width: 484px) {
-  .anime-img {
-    height: 100%;
-  }
-}
 </style>

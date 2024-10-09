@@ -318,7 +318,6 @@ const onMouseLeave = () => {
 }
 
 .text-details {
-  margin-top: 10px;
   width: 512px;
   min-height: 222px;
   height: fit-content;
@@ -450,6 +449,31 @@ const onMouseLeave = () => {
   .anime-title {
     width: 100%;
     font-size: 13px;
+  }
+  .details {
+    max-width: 700px;
+    min-width: 600px;
+    margin: 0 100px;
+  }
+  .img-block {
+    min-width: 173px;
+    max-height: 258px;
+  }
+  .text-details {
+    row-gap: 10px;
+  }
+  .full-title {
+    font-size: 18px;
+  }
+  .description {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 769px) {
+  .details {
+    width: 600px;
+    padding: 20px;
   }
 }
 
