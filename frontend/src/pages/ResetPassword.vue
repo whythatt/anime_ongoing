@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import axios from 'axios'
+import axios from '../utils/axios'
 
 const route = useRoute()
 const uid = ref(route.params.uid)
@@ -23,7 +23,7 @@ const handleReset = async () => {
   successMessage.value = ''
 
   try {
-    await axios.post('http://127.0.0.1:8000/auth/users/reset_password_confirm/', {
+    await axios.post('/auth/users/reset_password_confirm/', {
       uid: uid.value,
       token: token.value,
       new_password: newPassword.value,

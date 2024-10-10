@@ -1,14 +1,16 @@
 import { ref } from 'vue'
-import axios from 'axios'
+import axios from '../utils/axios'
 
 const accessToken = ref(localStorage.getItem('accessToken') || '')
 const refreshToken = ref(localStorage.getItem('refreshToken') || '')
+const ACCESS_TOKEN_EXPIRY = 5 * 60 * 1000 // 5 минут в миллисекундах
+const REFRESH_TOKEN_EXPIRY = 24 * 60 * 60 * 1000 // 1 день в миллисекундах
 
 const errorMessage = ref('')
 
 const login = async (email, password) => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/auth/jwt/create', {
+    const response = await axios.post('/auth/jwt/create', {
       email,
       password
     })
@@ -18,6 +20,8 @@ const login = async (email, password) => {
     refreshToken.value = response.data.refresh
     localStorage.setItem('accessToken', accessToken.value)
     localStorage.setItem('refreshToken', refreshToken.value)
+    localStorage.setItem('accessToken_expiry', getCurrentTime() + ACCESS_TOKEN_EXPIRY)
+    localStorage.setItem('refreshToken_expiry', getCurrentTime() + REFRESH_TOKEN_EXPIRY)
 
     // redirect
     window.location.href = '/'
@@ -32,7 +36,7 @@ const login = async (email, password) => {
 
 const signUp = async (username, email, password, re_password) => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/auth/users/', {
+    const response = await axios.post('/auth/users/', {
       username,
       email,
       password,
@@ -56,46 +60,67 @@ const logout = () => {
   window.location.href = '/'
 }
 
+const getCurrentTime = () => new Date().getTime()
+// Проверка действительности access token
+const isAccessTokenValid = () => {
+  const expiryTime = localStorage.getItem('accessToken_expiry')
+
+  return accessToken && expiryTime && getCurrentTime() < expiryTime
+}
+
+// Проверка действительности refresh token
+const isRefreshTokenValid = () => {
+  const expiryTime = localStorage.getItem('refreshToken_expiry')
+
+  return refreshToken && expiryTime && getCurrentTime() < expiryTime
+}
+
+// Функция для обновления access token
 const refreshAccessToken = async () => {
+  if (!isRefreshTokenValid()) {
+    // Удаляем токены, если refresh token недействителен
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+    return null
+  }
+
   try {
-    const response = await axios.post('http://127.0.0.1:8000/auth/jwt/refresh/', {
+    const response = await axios.post('/auth/jwt/refresh/', {
       refresh: refreshToken.value
     })
-    accessToken.value = response.data.access
-    localStorage.setItem('accessToken', accessToken.value)
+
+    if (!response.ok) throw new Error('Failed to refresh token')
+
+    const data = await response.json()
+
+    // Сохраняем новый access token и его время жизни
+    localStorage.setItem('accessToken', data.accessToken)
+    localStorage.setItem('accessToken_expiry', getCurrentTime() + ACCESS_TOKEN_EXPIRY)
+
+    return data.accessToken
   } catch (error) {
-    console.error('Refresh token error:', error)
-    logout()
+    console.error(error)
+    // Удаляем токены в случае ошибки
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+    return null
   }
 }
 
-const checkTokenValidity = () => {
-  if (!accessToken.value) {
-    return false
-  }
+// Основная функция для проверки токенов перед запросом
+export const checkTokens = async () => {
+  if (isAccessTokenValid()) {
+    // Если access token действителен, ничего не делаем
+    return
+  } else {
+    // Если access token недействителен, пробуем обновить его
+    const newAccessToken = await refreshAccessToken()
 
-  const tokenParts = accessToken.value.split('.')
-  if (tokenParts.length !== 3) {
-    return false
-  }
-
-  try {
-    const payload = JSON.parse(atob(tokenParts[1]))
-    const now = Math.floor(Date.now() / 1000)
-    return now <= payload.exp
-  } catch (error) {
-    console.error('Token validity error:', error)
-    return false
+    if (!newAccessToken) {
+      console.log('Токены недействительны. Пожалуйста, выполните вход снова.')
+      // Здесь можно перенаправить пользователя на страницу входа или показать сообщение
+    }
   }
 }
 
-export {
-  login,
-  errorMessage,
-  signUp,
-  logout,
-  refreshAccessToken,
-  checkTokenValidity,
-  accessToken,
-  refreshToken
-}
+export { login, errorMessage, signUp, logout }

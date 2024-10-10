@@ -1,8 +1,10 @@
 <script setup>
 import { computed } from 'vue'
-import { accessToken, logout } from '../services/auth'
+import { logout } from '../services/auth'
 
-const isLoggedIn = computed(() => !!accessToken.value)
+const accessToken = localStorage.getItem('accessToken')
+
+const isLoggedIn = computed(() => !!accessToken)
 
 const handleLogout = () => {
   logout()

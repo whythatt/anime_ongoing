@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref, inject, watch } from 'vue'
 import debounce from 'lodash.debounce'
-import axios from 'axios'
+import axios from '../utils/axios'
 
 import AnimeCard from '../components/AnimeCard.vue'
 import Filters from '../components/Filters.vue'
@@ -20,7 +20,7 @@ const fetchFavorites = async () => {
     if (!accessToken) {
       console.warn('Токен доступа отсутствует')
     } else {
-      const { data } = await axios.get('http://localhost:8000/api/favorites/', {
+      const { data } = await axios.get('/api/favorites/', {
         headers: { Authorization: `JWT ${accessToken}` },
         params
       })
@@ -45,14 +45,14 @@ const changeFavorites = async (favorite) => {
     if (!favorite.isFavorite) {
       const obj = { anime_id: favorite.anime.id }
 
-      const { data } = await axios.post('http://localhost:8000/api/favorites/', obj, {
+      const { data } = await axios.post('/api/favorites/', obj, {
         headers: { Authorization: `JWT ${accessToken}` }
       })
 
       favorite.isFavorite = true
       favorite.id = data.id
     } else {
-      await axios.delete(`http://localhost:8000/api/favorites/${favorite.id}/`, {
+      await axios.delete(`/api/favorites/${favorite.id}/`, {
         headers: { Authorization: `JWT ${accessToken}` }
       })
 

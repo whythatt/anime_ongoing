@@ -1,6 +1,6 @@
 <script setup>
 import { inject, ref, onMounted, watch } from 'vue'
-import axios from 'axios'
+import axios from '../utils/axios'
 
 import AnimeCard from '../components/AnimeCard.vue'
 import Filters from '../components/Filters.vue'
@@ -12,6 +12,11 @@ const displayedAnimes = ref([]) // Аниме, которые будут ото�
 const limit = 48 // Количество загружаемых аниме за раз
 const currentCount = ref(0) // Количество уже загруженных аниме
 const hasMore = ref(true) // Флаг для проверки наличия дополнительных данных
+
+const aToken = localStorage.getItem('accessToken')
+const rToken = localStorage.getItem('refreshToken')
+console.log(aToken)
+console.log(rToken)
 
 const favorites = ref([])
 
@@ -30,7 +35,7 @@ const fetchAnimes = async () => {
       search: filters.search || ''
     }
 
-    const { data } = await axios.get('http://127.0.0.1:8000/api/animes/', {
+    const { data } = await axios.get('/api/animes/', {
       params
     })
 
