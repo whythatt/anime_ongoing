@@ -6,7 +6,7 @@ const accessToken = localStorage.getItem('accessToken')
 
 const isLoggedIn = computed(() => !!accessToken)
 
-const handleLogout = () => {
+const onClickLogout = () => {
   logout()
 }
 </script>
@@ -17,7 +17,7 @@ const handleLogout = () => {
     <RouterLink to="/" class="animelist-text link">animelist</RouterLink>
     <RouterLink to="/" class="logo">AO</RouterLink>
     <RouterLink to="/favorites" class="waitlist-text link">waitlist</RouterLink>
-    <div v-if="isLoggedIn" @click="handleLogout" class="login">
+    <div v-if="isLoggedIn" @click="onClickLogout" class="login">
       <span>logout</span>
       <svg width="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

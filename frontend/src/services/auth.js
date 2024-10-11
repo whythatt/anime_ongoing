@@ -3,7 +3,7 @@ import axios from '../utils/axios'
 
 const accessToken = ref(localStorage.getItem('accessToken') || '')
 const refreshToken = ref(localStorage.getItem('refreshToken') || '')
-const ACCESS_TOKEN_EXPIRY = 5 * 60 * 1000 // 5 минут в миллисекундах
+const ACCESS_TOKEN_EXPIRY = 5 * 60 * 1000 // 1 минут в миллисекундах
 const REFRESH_TOKEN_EXPIRY = 24 * 60 * 60 * 1000 // 1 день в миллисекундах
 
 const errorMessage = ref('')
@@ -89,38 +89,32 @@ const refreshAccessToken = async () => {
       refresh: refreshToken.value
     })
 
-    if (!response.ok) throw new Error('Failed to refresh token')
-
-    const data = await response.json()
+    const data = response.data
 
     // Сохраняем новый access token и его время жизни
-    localStorage.setItem('accessToken', data.accessToken)
+    localStorage.setItem('accessToken', data.access)
     localStorage.setItem('accessToken_expiry', getCurrentTime() + ACCESS_TOKEN_EXPIRY)
 
     return data.accessToken
   } catch (error) {
     console.error(error)
-    // Удаляем токены в случае ошибки
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('refreshToken')
-    return null
   }
 }
 
 // Основная функция для проверки токенов перед запросом
-export const checkTokens = async () => {
-  if (isAccessTokenValid()) {
-    // Если access token действителен, ничего не делаем
-    return
-  } else {
-    // Если access token недействителен, пробуем обновить его
-    const newAccessToken = await refreshAccessToken()
+// export const checkTokens = async () => {
+//   if (isAccessTokenValid()) {
+//     // Если access token действителен, ничего не делаем
+//     return
+//   } else {
+//     // Если access token недействителен, пробуем обновить его
+//     const newAccessToken = await refreshAccessToken()
+//
+//     if (!newAccessToken) {
+//       console.log('Токены недействительны. Пожалуйста, выполните вход снова.')
+//       // Здесь можно перенаправить пользователя на страницу входа или показать сообщение
+//     }
+//   }
+// }
 
-    if (!newAccessToken) {
-      console.log('Токены недействительны. Пожалуйста, выполните вход снова.')
-      // Здесь можно перенаправить пользователя на страницу входа или показать сообщение
-    }
-  }
-}
-
-export { login, errorMessage, signUp, logout }
+export { login, errorMessage, signUp, logout, refreshAccessToken }

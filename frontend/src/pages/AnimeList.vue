@@ -72,9 +72,11 @@ const fetchFavorites = async () => {
     if (!accessToken) {
       console.warn('Токен доступа отсутствует')
     } else {
-      const { data: favs } = await axios.get('http://localhost:8000/api/favorites/', {
-        headers: { Authorization: `JWT ${accessToken}` }
-      })
+      //const { data: favs } = await axios.get('/api/favorites/', {
+      //  headers: { Authorization: `JWT ${accessToken}` }
+      //})
+      const { data: favs } = await axios.get('/api/favorites/')
+
       favorites.value = favs
       displayedAnimes.value = displayedAnimes.value.map((anime) => {
         const favorite = favs.find((favorite) => favorite.anime.id === anime.id)
@@ -104,14 +106,14 @@ const changeFavorites = async (anime) => {
     const obj = { anime_id: anime.id, anime }
 
     if (!anime.isFavorite) {
-      const { data } = await axios.post('http://localhost:8000/api/favorites/', obj, {
+      const { data } = await axios.post('/api/favorites/', obj, {
         headers: { Authorization: `JWT ${accessToken}` }
       })
 
       anime.isFavorite = true
       anime.favoriteId = data.id
     } else {
-      await axios.delete(`http://localhost:8000/api/favorites/${anime.favoriteId}/`, {
+      await axios.delete(`/api/favorites/${anime.favoriteId}/`, {
         headers: { Authorization: `JWT ${accessToken}` }
       })
       anime.isFavorite = false
