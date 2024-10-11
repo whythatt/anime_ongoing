@@ -102,19 +102,19 @@ const refreshAccessToken = async () => {
 }
 
 // Основная функция для проверки токенов перед запросом
-// export const checkTokens = async () => {
-//   if (isAccessTokenValid()) {
-//     // Если access token действителен, ничего не делаем
-//     return
-//   } else {
-//     // Если access token недействителен, пробуем обновить его
-//     const newAccessToken = await refreshAccessToken()
-//
-//     if (!newAccessToken) {
-//       console.log('Токены недействительны. Пожалуйста, выполните вход снова.')
-//       // Здесь можно перенаправить пользователя на страницу входа или показать сообщение
-//     }
-//   }
-// }
+const checkTokens = async () => {
+  if (isAccessTokenValid()) {
+    // Если access token действителен, ничего не делаем
+    return
+  } else {
+    // Если access token недействителен, пробуем обновить его
+    const newAccessToken = await refreshAccessToken()
 
-export { login, errorMessage, signUp, logout, refreshAccessToken }
+    if (!newAccessToken) {
+      console.log('Токены недействительны. Пожалуйста, выполните вход снова.')
+      // Здесь можно перенаправить пользователя на страницу входа или показать сообщение
+    }
+  }
+}
+
+export { login, errorMessage, signUp, logout, refreshAccessToken, checkTokens }

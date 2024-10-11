@@ -1,6 +1,6 @@
 // axios.js
 import axios from 'axios'
-import { refreshAccessToken } from '../services/auth' // Импортируйте вашу функцию проверки токенов
+import { refreshAccessToken, checkTokens } from '../services/auth' // Импортируйте вашу функцию проверки токенов
 
 const instance = axios.create({
   baseURL: 'http://localhost:8000' // Укажите базовый URL вашего API
@@ -35,7 +35,7 @@ instance.interceptors.response.use(
       originalRequest._retry = true // Устанавливаем флаг, чтобы избежать зацикливания
 
       try {
-        const newAccessToken = await refreshAccessToken() // Обновляем токен
+        const newAccessToken = await checkTokens() // Обновляем токен
         originalRequest.headers['Authorization'] = `JWT ${newAccessToken}` // Добавляем новый токен в запрос
 
         return instance(originalRequest) // Повторяем оригинальный запрос с новым токеном
