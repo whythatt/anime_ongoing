@@ -21,7 +21,6 @@ const fetchFavorites = async () => {
       console.warn('Токен доступа отсутствует')
     } else {
       const { data } = await axios.get('/api/favorites/', {
-        headers: { Authorization: `JWT ${accessToken}` },
         params
       })
 
@@ -45,16 +44,12 @@ const changeFavorites = async (favorite) => {
     if (!favorite.isFavorite) {
       const obj = { anime_id: favorite.anime.id }
 
-      const { data } = await axios.post('/api/favorites/', obj, {
-        headers: { Authorization: `JWT ${accessToken}` }
-      })
+      const { data } = await axios.post('/api/favorites/', obj, {})
 
       favorite.isFavorite = true
       favorite.id = data.id
     } else {
-      await axios.delete(`/api/favorites/${favorite.id}/`, {
-        headers: { Authorization: `JWT ${accessToken}` }
-      })
+      await axios.delete(`/api/favorites/${favorite.id}/`, {})
 
       favorite.isFavorite = false
     }
@@ -75,7 +70,7 @@ watch(
 
 <template>
   <Filters pageName="Favorites list" />
-  <div class="favorites-list" v-auto-animate>
+  <div class="anime-list" v-auto-animate>
     <AnimeCard
       v-for="fav in favorites"
       :key="fav.anime.id"
@@ -100,19 +95,26 @@ watch(
 </template>
 
 <style scoped>
-.title-block {
-  font-size: 23px;
-  width: 1304px;
-  margin: 0 auto 32px auto;
-}
-
-.favorites-list {
-  width: 1304px;
+.anime-list {
+  max-width: 1340px;
   margin: 0 auto;
+  padding: 0 30px;
   display: grid;
-  grid-gap: 25px 20px;
+  grid-gap: 15px 25px;
   grid-template-columns: repeat(auto-fill, 185px);
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1540px) {
+  .anime-list {
+    max-width: 1140px;
+  }
+}
+
+@media (max-width: 1085px) {
+  .anime-list {
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+  }
 }
 </style>
