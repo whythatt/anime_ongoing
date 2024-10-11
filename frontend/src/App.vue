@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, reactive, ref, watch, provide } from 'vue'
-import axios from 'axios'
 import debounce from 'lodash.debounce'
 
 import Header from './components/Header.vue'

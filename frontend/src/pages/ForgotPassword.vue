@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
+import axios from '../utils/axios'
 
 const email = ref('')
 const isSending = ref(false)
@@ -13,7 +13,7 @@ const handleSubmit = async () => {
   successMessage.value = ''
 
   try {
-    await axios.post('http://127.0.0.1:8000/auth/users/reset_password/', {
+    await axios.post('/auth/users/reset_password/', {
       email: email.value
     })
     successMessage.value = 'Letter sent successfully.'

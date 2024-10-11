@@ -2,7 +2,7 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
-import axios from 'axios'
+import axios from './utils/axios'
 
 import App from './App.vue'
 import router from './router'

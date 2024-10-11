@@ -1,6 +1,6 @@
 <script setup>
 import { inject, ref, onMounted, watch } from 'vue'
-import axios from 'axios'
+import axios from '../utils/axios'
 
 import AnimeCard from '../components/AnimeCard.vue'
 import Filters from '../components/Filters.vue'
@@ -12,6 +12,11 @@ const displayedAnimes = ref([]) // Аниме, которые будут ото�
 const limit = 48 // Количество загружаемых аниме за раз
 const currentCount = ref(0) // Количество уже загруженных аниме
 const hasMore = ref(true) // Флаг для проверки наличия дополнительных данных
+
+const aToken = localStorage.getItem('accessToken')
+const rToken = localStorage.getItem('refreshToken')
+console.log(aToken)
+console.log(rToken)
 
 const favorites = ref([])
 
@@ -30,7 +35,7 @@ const fetchAnimes = async () => {
       search: filters.search || ''
     }
 
-    const { data } = await axios.get('http://127.0.0.1:8000/api/animes/', {
+    const { data } = await axios.get('/api/animes/', {
       params
     })
 
@@ -67,9 +72,11 @@ const fetchFavorites = async () => {
     if (!accessToken) {
       console.warn('Токен доступа отсутствует')
     } else {
-      const { data: favs } = await axios.get('http://localhost:8000/api/favorites/', {
-        headers: { Authorization: `JWT ${accessToken}` }
-      })
+      //const { data: favs } = await axios.get('/api/favorites/', {
+      //  headers: { Authorization: `JWT ${accessToken}` }
+      //})
+      const { data: favs } = await axios.get('/api/favorites/')
+
       favorites.value = favs
       displayedAnimes.value = displayedAnimes.value.map((anime) => {
         const favorite = favs.find((favorite) => favorite.anime.id === anime.id)
@@ -99,14 +106,14 @@ const changeFavorites = async (anime) => {
     const obj = { anime_id: anime.id, anime }
 
     if (!anime.isFavorite) {
-      const { data } = await axios.post('http://localhost:8000/api/favorites/', obj, {
+      const { data } = await axios.post('/api/favorites/', obj, {
         headers: { Authorization: `JWT ${accessToken}` }
       })
 
       anime.isFavorite = true
       anime.favoriteId = data.id
     } else {
-      await axios.delete(`http://localhost:8000/api/favorites/${anime.favoriteId}/`, {
+      await axios.delete(`/api/favorites/${anime.favoriteId}/`, {
         headers: { Authorization: `JWT ${accessToken}` }
       })
       anime.isFavorite = false
