@@ -182,7 +182,7 @@ const handleSignUp = () => {
   gap: 30px;
   width: fit-content;
   height: fit-content;
-  padding: 35px 30px;
+  padding: 20px 20px;
   margin: 0 auto;
 }
 .login-logo {
@@ -195,7 +195,7 @@ const handleSignUp = () => {
 form {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 15px;
 }
 
 .email,
@@ -204,7 +204,7 @@ form {
   width: 330px;
   height: fit-content;
   padding: 18px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 0 42px rgba(143, 172, 145, 0.2);
   display: flex;
   flex-direction: column;
@@ -237,7 +237,7 @@ button {
   color: #ffdbb7;
   flex: center;
   width: 100%;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 10px 0;
 }
 
@@ -262,5 +262,15 @@ button {
   display: flex;
   align-items: center;
   column-gap: 3px;
+}
+
+@media (max-height: 821px) {
+  .email,
+  .password {
+    padding: 10px;
+  }
+  form {
+    row-gap: 9px;
+  }
 }
 </style>

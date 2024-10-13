@@ -23,7 +23,6 @@ provide('onChangeInput', onChangeInput)
 </script>
 
 <template>
-  <link href="https://fonts.googleapis.com/css?family=Lexend Deca" rel="stylesheet" />
   <Header />
   <RouterView />
 </template>
