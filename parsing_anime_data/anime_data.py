@@ -35,7 +35,8 @@ class WebsiteParser:
         print("[INFO] Geted the number of pages")
         print("[INFO] Getting anime links")
         all_anime_links = []
-        for i in range(1, int(all_page_count) + 1):
+        # for i in range(1, int(all_page_count) + 1):
+        for i in range(1, 2):
             link = f"{self.url}&page={i}"
             tree = etree.fromstring(self.fetch_page(link), self.parser)
 
@@ -128,7 +129,7 @@ class WebsiteParser:
             else:
                 next_episode_count = None
                 release_date_next_ep = None
-            print(title)
+            print(score)
 
             anime_data = {
                 "title": title.strip(),

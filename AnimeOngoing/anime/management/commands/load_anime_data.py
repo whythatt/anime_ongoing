@@ -9,7 +9,7 @@ class Command(BaseCommand):
     help = "Load anime data from JSON file into the database"
 
     def handle(self, *args, **options):
-        with open("../parsing_anime_data/anime_data.json", "r") as file:
+        with open("../parsing_anime_data/anime_data_async.json", "r") as file:
             data = json.load(file)  # Получаем все объекты Anime из базы данных
             all_anime = Anime.objects.all()
             for item in data:
