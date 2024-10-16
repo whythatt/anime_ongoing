@@ -179,10 +179,10 @@ const handleSignUp = () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 30px;
+  gap: 10px;
   width: fit-content;
   height: fit-content;
-  padding: 20px 20px;
+  padding: 10px 20px;
   margin: 0 auto;
 }
 .login-logo {
